@@ -1,5 +1,5 @@
 import Skills from '@/components/ResumeSkills/Skills';
-import myResume from '@/assets/Justin-Hebenstreit-Resume-2025.pdf'
+import myResume from '@/assets/Justin-Hebenstreit-Programming-Resume.pdf'
 import '@/SCSS/Resume/Resume.scss';
 
 export default function Resume() {
