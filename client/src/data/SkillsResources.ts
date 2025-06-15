@@ -185,52 +185,9 @@ export const SkillsResources: Record<string, { label: string; url: string }[]> =
   ],
 
   // ===============================
-  // Game Development
-  // ===============================
-  C:
-  [
-    {
-      label: "C Docs Microsoft",
-      url: "https://learn.microsoft.com/en-us/cpp/c-language/?view=msvc-170"
-    },
-    {
-      label: "C Tutorial W3Schools",
-      url: "https://www.w3schools.com/c/"
-    }
-  ],
-  CPlusPlus:
-  [
-    {
-      label: "C++ Standards",
-      url: "https://isocpp.org/std/the-standard"
-    },
-    {
-      label: "C++ Tutorials",
-      url: "https://cplusplus.com/doc/"
-    },
-    {
-      label: "C++ Tutorials W3Schools",
-      url: "https://www.w3schools.com/cpp/"
-    },
-  ],
-  CSharp:
-  [
-    {
-      label: "C# Docs",
-      url: "https://learn.microsoft.com/en-us/dotnet/csharp/"
-    }
-  ],
-  Unity:
-  [
-    {
-      label: "Unity Manual",
-      url: "https://docs.unity3d.com/Manual/index.html"
-    }
-  ],
-
-  // ===============================
   // Tools & Utilities
   // ===============================
+  
   Git:
   [
     {
