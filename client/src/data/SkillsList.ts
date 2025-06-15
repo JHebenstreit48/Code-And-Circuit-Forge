@@ -11,8 +11,6 @@ import {
 import {
   SiAngular,
   SiApollographql,
-  SiC,
-  SiCplusplus,
   SiCisco,
   SiCss3,
   SiDrupal,
@@ -24,9 +22,7 @@ import {
   SiPostgresql,
   SiPostman,
   SiPython,
-  SiSharp,
   SiTypescript,
-  SiUnity,
   SiVuedotjs,
   SiFlutter,
   SiDart,
@@ -34,13 +30,11 @@ import {
   SiSwift,
   SiExpo,
   SiAndroidstudio,
-  SiRider,
   SiWireshark,
 } from "react-icons/si";
 import
 {
   DiVisualstudio,
-  DiUnitySmall
 } from "react-icons/di";
 import
 {
@@ -123,39 +117,6 @@ export const SkillsList: { title: string; subcategories: Subcategory[] }[] = [
           learning: [
             { name: "Expo", icon: SiExpo, color: "#000020" },
             { name: "Android Studio", icon: SiAndroidstudio, color: "#3DDC84" },
-          ],
-        },
-      },
-    ],
-  },
-  {
-    title: "Game Development",
-    subcategories: [
-      {
-        type: "proficiency",
-        level: "learning",
-        skills: [
-          { name: "Unity", icon: SiUnity, color: "#000" },
-          {
-            name: "C Family",
-            icon: SiC,
-            color: "#A8B9CC",
-            children: [
-              { name: "C", icon: SiC, color: "#A8B9CC" },
-              { name: "C++", icon: SiCplusplus, color: "#00599C", resourceKey: "CPlusPlus" },
-              { name: "C#", icon: SiSharp, color: "#9B4F96", resourceKey: "CSharp" },
-            ],
-          },
-          { name: "Python", icon: SiPython, color: "#3776AB" },
-        ],
-      },
-      {
-        type: "tools",
-        label: "Tools",
-        toolsByLevel: {
-          learning: [
-            { name: "Unity Hub", icon: DiUnitySmall, color: "#000" },
-            { name: "Rider", icon: SiRider, color: "#000" },
           ],
         },
       },
