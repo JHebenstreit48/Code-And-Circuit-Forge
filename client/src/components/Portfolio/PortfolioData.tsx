@@ -17,31 +17,24 @@ const portfolioData: IPortfolioCard[] = [
     },
     {
         image: Images.CodeQuest,
-        name: 'CodeQuest',
+        name: 'DevScriptStax',
         description: 'React version of Coding Notes website',
-        gitHubRepo: 'https://github.com/JHebenstreit48/CodeQuest',
-        deployment: 'https://web-dev-codequest.netlify.app/'
+        gitHubRepo: 'https://github.com/JHebenstreit48/DevScriptStax',
+        deployment: 'https://devscriptstax.netlify.app/'
     },
-    {
-        image: Images.StarWars,
-        name: 'Star Wars v1',
-        description: 'Non-React version of Star Wars website',
-        gitHubRepo: 'https://github.com/JHebenstreit48/star-wars',
-        deployment: 'https://jhebenstreit48.github.io/star-wars/'
-    },
+    // {
+    //     image: Images.StarWars,
+    //     name: 'Star Wars v1',
+    //     description: 'Non-React version of Star Wars website',
+    //     gitHubRepo: 'https://github.com/JHebenstreit48/star-wars',
+    //     deployment: 'https://jhebenstreit48.github.io/star-wars/'
+    // },
     {
         image: Images.CodingNotesV1,
         name: 'Portfolio v1',
         description: 'Non-React version of my portfolio',
         gitHubRepo: 'https://github.com/JHebenstreit48/portfolio',
         deployment: 'https://jhebenstreit48.github.io/coding-study-guide/'
-    },
-    {
-        image: 'https://www.makeareadme.com/images/open-graph-logo.png?v=20181203',
-        name: 'ReadMe Generator',
-        description: 'CLI based web app that generates a ReadMe file',
-        gitHubRepo: 'https://github.com/JHebenstreit48/fun-readme-generator',
-        deployment: 'https://drive.google.com/file/d/1jk-KmZ8Rp15vUH6QkIQsLW2LZMe_VQKn/view?usp=sharing'
     },
     {
         image: Images.ALUTracker,
@@ -61,7 +54,8 @@ const portfolioData: IPortfolioCard[] = [
         image: Images.PixelProse,
         name: 'PixelProse',
         description: "A web application for my notes on all things console gaming related.",
-        gitHubRepo: '',
+        gitHubRepo: 'https://github.com/JHebenstreit48/PixelProse',
+        deployment: 'https://pixelprose.netlify.app/'
     }
 ];
 
