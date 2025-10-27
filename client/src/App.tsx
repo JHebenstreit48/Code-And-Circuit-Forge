@@ -4,7 +4,7 @@ import Header from '@/components/HeaderAndNav/Header';
 import Footer from '@/components/Footer';
 
 // Global/layout styles (background + layout grid + any base tokens)
-import '@/scss/Page.scss';
+import '@/SCSS/Page.scss';
 
 export default function App() {
   return (
