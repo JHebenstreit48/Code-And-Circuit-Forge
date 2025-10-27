@@ -1,38 +1,90 @@
+/* src/SCSS/AboutMe/AboutMe.scss */
 @use "sass:color";
+@use "@scss/Globals" as *;
 
-/* =============================
-   Variables (used by .profilePicture only)
-   ============================= */
+/* ===== keep your local variables ===== */
 $border-highlight: rgb(169, 30, 255);
 $box-glow: rgb(0, 219, 248);
-$radius-circle: 50%;
+$radius-circle: 1rem;
 
-/* =============================
-      Profile Picture
-   ============================= */
+/* ===== page layout: 3 columns (media | gap | text) ===== */
+.aboutHero {
+  /* keeps content from kissing the sticky header */
+  padding-top: clamp(14px, 2.2vw, 24px);
+  padding-bottom: clamp(18px, 3vw, 36px);
+
+  .aboutHero__inner {
+    width: min(1200px, 92vw);
+    margin-inline: auto;
+
+    display: grid;
+    /* media | gap | text */
+    grid-template-columns:
+      clamp(190px, 22vw, 260px)
+      clamp(22px, 4vw, 56px)
+      1fr;
+    row-gap: clamp(18px, 2.4vw, 28px);
+    align-items: start;
+  }
+
+  /* Title aligns to the text column (no overlap with portrait) */
+  &__title {
+    grid-column: 3 / 4;
+    margin: 0 0 clamp(8px, 1.4vw, 12px);
+  }
+
+  /* Portrait column */
+  &__media { grid-column: 1 / 2; margin-top: clamp(6px, 1vw, 10px); }
+  &__portrait {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: $radius-circle;
+
+    border: 2px solid $border-highlight;
+    box-shadow:
+      0 0 0 1px rgba(169, 30, 255, .35),
+      0 10px 28px rgba(0,0,0,.35),
+      0 0 22px rgba(0, 219, 248, .25);
+  }
+
+  /* Bio column */
+  &__text { grid-column: 3 / 4; max-width: 920px; }
+
+  /* ===== responsive ===== */
+  @include maxw($tablet-portrait) {
+    .aboutHero__inner {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    &__title { grid-column: 1 / -1; text-align: center; }
+    &__media { grid-column: 1 / -1; }
+    &__text  { grid-column: 1 / -1; max-width: 100%; }
+  }
+
+  @include maxw($cellphone-portrait) {
+    &__portrait { width: min(58vw, 280px); }
+  }
+}
+
+/* ===== back-compat with your old picture classes (safe to keep) ===== */
 .profilePictureContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15rem auto 5rem auto;
-  width: 25rem;
-  height: 16rem;
+  width: 10rem; height: 10rem;
+  margin: 0; /* grid controls spacing now */
+  &:not(:has(+ *)) { margin: 2rem 8rem 0; }
 
-  @media only screen and (max-width: 390px) {
-    margin: 17rem auto 2rem auto;
-  }
+  @include maxw($cellphone-portrait) { margin: 0 auto 1rem auto; }
 }
 
 .profilePicture {
   border-radius: $radius-circle;
-  width: 18rem;
-  height: 18rem;
+  width: 16rem; height: 16rem;
   border: 2px solid $border-highlight;
-  box-shadow: 0 0 10px $box-glow;
+  box-shadow: 0 0 0 1px rgba(169,30,255,.35),
+              0 10px 28px rgba(0,0,0,.35),
+              0 0 22px rgba(0,219,248,.25);
 
-  // ========== Responsive
-  @media only screen and (max-width: 390px) {
-    width: 14rem;
-    height: 14rem;
-  }
+  @include maxw($cellphone-portrait) { width: min(58vw, 280px); height: auto; }
 }

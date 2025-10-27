@@ -20,7 +20,7 @@ $gradient-blue-cyan: linear-gradient(
 .cardContainer {
   display: flex;
   justify-content: center;
-  margin: 12rem auto;
+  margin: 2rem auto;
 
   @media only screen and (max-width: 390px) {
     margin-top: 15rem;

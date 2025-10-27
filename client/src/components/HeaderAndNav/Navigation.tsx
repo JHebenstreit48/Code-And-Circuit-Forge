@@ -1,43 +1,32 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '@/SCSS/HeaderNavAndFooter/Navigation.scss';
 
-interface NavigationLinks {
-  pageTitle: string;
-}
-
-const ListItems = (props: NavigationLinks & { isActive: boolean; onClick: () => void }) => {
-  return (
-    <button
-      onClick={props.onClick}
-      type="button"
-      className={`btn-lg ${props.isActive ? 'active-link' : ''}`}
-    >
-      {props.pageTitle}
-    </button>
-  );
-};
+const links = [
+  { title: 'About', path: '/about' },
+  { title: 'Portfolio', path: '/portfolio' },
+  { title: 'Skills', path: '/resume' },   // your Skills page lives at /resume
+  { title: 'Contact', path: '/contact' },
+  // If you later add a dedicated résumé HTML/PDF route, add it here.
+];
 
 export default function Navigation() {
-  const navigation = useNavigate();
-  const currentTab = useLocation().pathname;
-
-  const navLinks = [
-    { pageTitle: 'About', path: () => navigation('/'), location: '/' },
-    { pageTitle: 'Contact', path: () => navigation('/contact'), location: '/contact' },
-    { pageTitle: 'Portfolio', path: () => navigation('/portfolio'), location: '/portfolio' },
-    { pageTitle: 'Resume', path: () => navigation('/resume'), location: '/resume' },
-  ];
-
   return (
-    <div className="Navigation">
-      {navLinks.map((navLink) => (
-        <ListItems
-          key={navLink.pageTitle}
-          onClick={navLink.path}
-          pageTitle={navLink.pageTitle}
-          isActive={currentTab === navLink.location}
-        />
-      ))}
-    </div>
+    <nav className="mainNav" aria-label="Primary">
+      <ul className="mainNav__list">
+        {links.map(({ title, path }) => (
+          <li key={title} className="mainNav__item">
+            <NavLink
+              to={path}
+              end={path === '/'} // exact match for home
+              className={({ isActive }: { isActive: boolean }) =>
+                `mainNav__link${isActive ? ' is-active' : ''}`
+              }
+            >
+              {title}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
