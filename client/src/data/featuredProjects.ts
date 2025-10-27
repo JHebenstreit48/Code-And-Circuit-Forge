@@ -16,7 +16,7 @@ export const featuredProjects: Featured[] = [
     title: 'Asphalt Legends v1',
     subtitle: 'Early Projects',
     image: Images.Asphalt,
-    to: '/portfolio/alu',
+    to: '/portfolio#proj-asphalt-legends-v1',
     tags: ['HTML', 'CSS', 'JS'],
   },
   {
@@ -24,7 +24,7 @@ export const featuredProjects: Featured[] = [
     title: 'DevScriptStax',
     subtitle: 'Recent Projects',
     image: Images.CodeQuest,     // adjust to your actual key
-    to: '/portfolio/devscriptstax',
-    tags: ['React', 'GraphQL', 'Notes'],
+    to: '/portfolio#proj-devscriptstax',
+    tags: ['React', 'Node', 'TypeScript', 'MongoDB', 'Express', 'JSON',],
   },
 ];

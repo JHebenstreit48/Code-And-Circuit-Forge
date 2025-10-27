@@ -1,242 +1,249 @@
 @use "sass:color";
+@use "@scss/Globals" as *;
 
-/* =============================
-   Variables
-   ============================= */
-   $accent-fluent: #38c172;
-   $accent-learning: #f9c74f;
-   $accent-refreshing: #00b4d8;
-   $accent-tools: rgba(255, 180, 200, 0.92);
-   $accent-toggle: #9beeff;
-   $icon-orange: #f3a416;
-   
-   $skill-bg: rgba(255, 255, 255, 0.1);
-   $skill-border: rgba(255, 255, 255, 0.2);
-   $skill-blur: blur(8px);
-   
-   $gradient-purple-orange: linear-gradient(
-     to bottom,
-     rgba(162, 1, 243, 0.08),
-     rgba(255, 100, 0, 0.08)
-   );
-   $gradient-pink-white: linear-gradient(
-     to bottom,
-     rgba(255, 0, 90, 0.08),
-     rgba(255, 255, 255, 0.04)
-   );
-   
-   /* =============================
-      Skills Container
-      ============================= */
-   .skillsContainer {
-     margin-top: 2rem;
-   }
-   
-   .skillsSection {
-     text-align: center;
-     color: white;
-     font-size: 1.5rem;
-     margin-bottom: 1.5rem;
-   }
-   
-   /* =============================
-      Section Titles
-      ============================= */
-   .skillsTitle {
-     margin: 0 auto 1rem auto;
-     width: 95%;
-     padding: 0.8rem;
-     background: $gradient-purple-orange;
-     backdrop-filter: blur(7px);
-     -webkit-backdrop-filter: blur(8px);
-     border-radius: 4rem;
-     color: rgba(255, 200, 120, 0.9);
-     font-size: 2.2rem;
-     text-align: center;
-     text-shadow: 2px 5px 7px black;
-     border: 1px solid $skill-border;
-     box-shadow: 48 28 13px rgba(0, 0, 0, 0.5);
-   
-     @media only screen and (max-width: 390px) {
-       margin-top: 2rem;
-     }
-   }
-   
-   .skillsSubsection {
-     margin: 2rem auto 3rem auto;
-   }
-   
-   .subsectionTitle {
-     font-size: 1.3rem;
-     margin: 1rem 0 1.2rem;
-     text-align: center;
-     font-weight: 600;
-   
-     &.fluent {
-       color: $accent-fluent;
-     }
-   
-     &.learning {
-       color: $accent-learning;
-     }
-   
-     &.refreshing {
-       color: $accent-refreshing;
-     }
-   }
-   
-   /* =============================
-      Tools Section
-      ============================= */
-   .toolsTitle {
-     margin: 2.5rem auto 1.5rem auto;
-     width: 80%;
-     padding: 0.6rem;
-     background: $gradient-pink-white;
-     backdrop-filter: blur(6px);
-     -webkit-backdrop-filter: blur(6px);
-     border-radius: 2rem;
-     font-size: 1.9rem;
-     color: $accent-tools;
-     text-align: center;
-     text-shadow: 1px 3px 6px black;
-     border: 1px solid rgba(255, 255, 255, 0.1);
-     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-   }
-   
-   .toolsHeader {
-     display: inline-flex;
-     align-items: center;
-     justify-content: center;
-     gap: 0.5rem;
-   }
-   
-   .toolsIcon {
-     font-size: 1.6rem;
-     color: $icon-orange;
-     vertical-align: middle;
-   }
-   
-   /* =============================
-      Skill Grid & Cards
-      ============================= */
-   .skillsGrid {
-     display: flex;
-     flex-wrap: wrap;
-     gap: 2rem;
-     justify-content: center;
-   
-     @media only screen and (max-width: 390px) {
-       gap: 1rem;
-     }
-   }
-   
-   .skillWrapper {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     width: 9rem;
-     min-height: 9rem;
-   
-     @media only screen and (max-width: 390px) {
-       width: 8rem;
-       min-height: 8rem;
-     }
-   }
-   
-   .skillCard {
-     background: $skill-bg;
-     backdrop-filter: $skill-blur;
-     border-radius: 1rem;
-     box-shadow: 0 0 6px rgb(3, 194, 137);
-     width: 9rem;
-     height: 9rem;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     position: relative;
-   
-     .icon {
-       font-size: 2rem;
-       filter: drop-shadow(3px 3px 1px rgb(0, 0, 0));
-   
-       &:hover {
-         filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.7));
-         transform: scale(1.06);
-         transition: all 0.2s ease;
-       }
-   
-       &:active {
-         filter: drop-shadow(0px 0px 2px rgb(5, 150, 24));
-         transform: scale(0.98);
-       }
-     }
-   
-     .ciscoIcon {
-       font-size: 4rem;
-     }
-   
-     .unityHubIcon {
-       font-size: 3rem;
-     }
-   
-     .label {
-       margin-top: 0.5rem;
-       font-size: 1rem;
-       font-weight: 600;
-       text-align: center;
-       color: rgb(0, 204, 255);
-       text-shadow: #000000 1px 1px 1px;
-     }
-   
-     .toggleArrow {
-       color: $accent-toggle;
-       font-size: 1rem;
-       cursor: pointer;
-       user-select: none;
-       transition: transform 0.2s ease;
-       line-height: 1;
-   
-       &:hover {
-         transform: scale(1.2);
-       }
-   
-       @media only screen and (max-width: 390px) {
-         font-size: 0.9rem;
-       }
-     }
-   
-     @media only screen and (max-width: 390px) {
-       width: 8rem;
-       height: 8rem;
-   
-       &:last-child:nth-child(odd) {
-         grid-column: span 2;
-         justify-self: center;
-       }
-     }
-   }
-   
-   /* =============================
-      Nested Skills (Dropdown)
-      ============================= */
-   .nestedSkillsGrid {
-     margin-top: 0.6rem;
-     display: flex;
-     justify-content: center;
-     gap: 5rem;
-     margin-top: 2rem;
-     background-color: transparent;
-     border: none;
-     box-shadow: none;
-   
-     &.hidden {
-       display: none;
-     }
-   
-     &.visible {
-       display: flex;
-     }
-   }
-   
+/* ---------------- VARIABLES ---------------- */
+$accent-fluent: #38c172;
+$accent-learning: #f9c74f;
+$accent-refreshing: #00b4d8;
+$accent-tools: #ffb6c1;
+$accent-toggle: #9beeff;
+$cyan: #2fd1c2;
+
+$card-bg-grad: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.25));
+$card-hover-ring: rgba(47, 209, 194, 0.3);
+$text-light: #e9eef4;
+$text-muted: rgba(233, 238, 244, 0.7);
+$divider-grad: linear-gradient(to right, rgba(47, 209, 194, 0.35), transparent);
+
+.sectionTitle {
+  margin: 1rem 0 0 10rem;
+  font-size: 2.5rem;
+  color: $cyan;
+}
+
+/* ---------------- CONTAINER ---------------- */
+.skillsContainer {
+  width: 95%;
+  margin: 2rem auto 4rem auto;
+  color: $text-light;
+}
+
+/* ---------------- SECTION TITLES ---------------- */
+.skillsSection {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .skillsTitle {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: $accent-tools;
+    margin-bottom: 1.25rem;
+    position: relative;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+    /* subtle separator under title */
+    &::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 2px;
+      margin: 0.8rem auto 0 auto;
+      background: $divider-grad;
+    }
+
+    @include maxw($tablet-portrait) { font-size: 1.8rem; }
+  }
+}
+
+/* ---------------- SUBSECTIONS ---------------- */
+.skillsSubsection {
+  margin: 2rem auto 3rem auto;
+
+  .subsectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 1rem;
+    letter-spacing: 0.3px;
+
+    &.fluent { color: $accent-fluent; }
+    &.learning { color: $accent-learning; }
+    &.refreshing { color: $accent-refreshing; }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 40%;
+      height: 1px;
+      margin: 0.5rem auto 0;
+      background: linear-gradient(to right, currentColor, transparent);
+    }
+  }
+}
+
+/* ---------------- TOOLS SECTION ---------------- */
+.toolsTitle {
+  text-align: center;
+  margin: 3rem auto 1.5rem;
+  color: $accent-tools;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  .toolsHeader {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  @include maxw($cellphone-portrait) {
+    font-size: 1.4rem;
+  }
+}
+
+/* ---------------- GRID ---------------- */
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem;
+  padding-inline: 1rem;
+
+  @include maxw($tablet-portrait) { gap: 1.25rem; }
+  @include maxw($cellphone-portrait) { gap: 1rem; }
+}
+
+/* ---------------- SKILL CARD ---------------- */
+.skillWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 9rem;
+  min-height: 9rem;
+}
+
+.skillCard {
+  width: 9rem;
+  height: 9rem;
+  background: $card-bg-grad;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 12px rgba(0,0,0,0.4) inset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 0 6px $card-hover-ring,
+      0 0 0 2px rgba(47,209,194,0.35);
+  }
+
+  .icon {
+    font-size: 2.3rem;
+    margin-bottom: 0.4rem;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+    transition: transform 0.2s ease;
+
+    &:hover { transform: scale(1.08); }
+  }
+
+  .label {
+    font-size: 1rem;
+    color: $text-light;
+    text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  }
+
+  .toggleArrow {
+    position: absolute;
+    bottom: 0.4rem;
+    color: $accent-toggle;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+
+    &:hover { transform: scale(1.2); }
+  }
+
+  @include maxw($cellphone-portrait) {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+/* ---------------- NESTED SKILLS ---------------- */
+.nestedSkillsGrid {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 1rem;
+
+  &.hidden { display: none; }
+  &.visible { display: flex; }
+
+  @include maxw($tablet-portrait) { gap: 1.5rem; }
+}
+
+/* ---------------- MODAL ---------------- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: rgba(12, 16, 24, 0.9);
+  border: 1px solid rgba(47,209,194,0.4);
+  border-radius: 16px;
+  padding: 2rem;
+  width: min(90%, 500px);
+  box-shadow: 0 0 16px rgba(0,0,0,0.5);
+  text-align: left;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: $accent-tools;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 0.5rem 0;
+      a {
+        color: $text-light;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s ease;
+
+        &:hover { border-color: $accent-tools; }
+      }
+    }
+  }
+
+  .closeButton {
+    margin-top: 1.5rem;
+    display: block;
+    margin-inline: auto;
+    background: $accent-tools;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover { background: color.scale($accent-tools, $lightness: -20%); }
+  }
+}

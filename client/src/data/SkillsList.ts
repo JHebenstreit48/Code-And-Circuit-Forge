@@ -32,26 +32,11 @@ import {
   SiAndroidstudio,
   SiWireshark,
 } from "react-icons/si";
-import
-{
-  DiVisualstudio,
-} from "react-icons/di";
-import
-{
-  BiLogoVisualStudio,
-  BiNetworkChart
-} from "react-icons/bi";
-import
-{
-  BsCalculator,
-  BsWrench
-} from "react-icons/bs";
+import { DiVisualstudio } from "react-icons/di";
+import { BiLogoVisualStudio, BiNetworkChart } from "react-icons/bi";
+import { BsCalculator, BsWrench } from "react-icons/bs";
 import { TbBrandReactNative } from "react-icons/tb";
-import
-{
-  MdLayers,
-  MdVpnLock
-} from "react-icons/md"
+import { MdLayers, MdVpnLock } from "react-icons/md";
 
 import type { Subcategory } from "@/components/ResumeSkills/Skills";
 
@@ -141,9 +126,8 @@ export const SkillsList: { title: string; subcategories: Subcategory[] }[] = [
         type: "tools",
         label: "Tools",
         toolsByLevel: {
-          refreshing:
-          [
-            { name: "Packet Tracer", icon: BiNetworkChart, color: "#0AC1D6" }
+          refreshing: [
+            { name: "Packet Tracer", icon: BiNetworkChart, color: "#0AC1D6" },
           ],
           learning: [
             { name: "GNS3", icon: BsWrench, color: "#000" },
@@ -160,7 +144,6 @@ export const SkillsList: { title: string; subcategories: Subcategory[] }[] = [
         type: "proficiency",
         level: "fluent",
         skills: [
-          
           { name: "VS Code", icon: BiLogoVisualStudio, color: "#007ACC" },
           { name: "Git", icon: FaGitAlt, color: "#F05032" },
           { name: "GitHub", icon: FaGithub, color: "#fff" },
