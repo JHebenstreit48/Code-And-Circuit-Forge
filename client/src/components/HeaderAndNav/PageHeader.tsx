@@ -1,35 +1,18 @@
 import { useLocation } from "react-router-dom";
-import Navigation from "@/components/HeaderAndNav/Navigation";
+
+const PAGE_TITLES: Record<string, string> = {
+  "/": "About",
+  "/portfolio": "Portfolio",
+  "/resume": "Skills",
+  "/contact": "Contact",
+};
 
 export default function PageHeader() {
-  const location = useLocation();
-  const currentPath = location.pathname;
-
-  const getHeaderText = (path: string) => {
-    switch (path) {
-      case "/":
-        return "About";
-      case "/contact":
-        return "Contact";
-      case "/portfolio":
-        return "Portfolio";
-      case "/resume":
-        return "Resume";
-      default:
-        return "Page";
-    }
-  };
-
-  const headerText = getHeaderText(currentPath);
-
+  const path = useLocation().pathname;
+  const title = PAGE_TITLES[path] ?? "Page";
   return (
-    <>
-      <Navigation />
-      <div className="pageHeaderContainer">
-        <h1 className='pageHeader'>{headerText}</h1>
-      </div>
-
-
-    </>
-  )
+    <div className="pageHeaderContainer">
+      <h1 className="pageHeader section-title">{title}</h1>
+    </div>
+  );
 }

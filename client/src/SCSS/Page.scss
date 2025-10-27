@@ -1,0 +1,116 @@
+@use "sass:color";
+@use "@scss/Globals" as *;
+
+/* ==============================
+            Variables
+============================== */
+$grad-mid: #20103e; // richer purple core
+$grad-end: #0b0f19; // blue/charcoal edge
+$cyan: #2fd1c2; // accent
+$muted: #a8b3c1;
+$text: #e9eef4;
+
+/* ==============================
+        Gradient Mixin
+============================== */
+@mixin locked-gradient($mid, $end) {
+  background: radial-gradient(ellipse 115% 100% at 50% 70%, $mid 7%, $end 82%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+
+/* ==============================
+     Global Reset / Defaults
+============================== */
+html {
+  box-sizing: border-box;
+  scrollbar-gutter: stable both-edges;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100dvh;
+}
+body {
+  margin: 0;
+  color: $text;
+  background: #0b0f19; /* fallback */
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* ==============================
+     App Shell (sticky footer)
+============================== */
+.appContainer {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    @include locked-gradient($grad-mid, $grad-end);
+  }
+  &::after {
+    /* subtle blue sweep + a touch of magenta to match img #1 */
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        1200px 600px at 20% 15%,
+        rgba(64, 113, 255, 0.14),
+        transparent 60%
+      ),
+      radial-gradient(
+        1000px 700px at 85% 60%,
+        rgba(165, 62, 255, 0.1),
+        transparent 65%
+      );
+    mix-blend-mode: screen;
+  }
+}
+
+/* ==============================
+     Typography accents
+============================== */
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+}
+.section-title,
+.pageHeader {
+  color: $cyan;
+}
+
+a {
+  color: $cyan;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Shared focus ring */
+:where(a, button, [role="button"], input, textarea, select):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 6px color-mix(in srgb, $cyan, transparent 85%);
+  border-radius: 12px;
+}
