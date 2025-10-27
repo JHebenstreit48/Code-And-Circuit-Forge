@@ -1,11 +1,14 @@
 import { Images } from '@/assets/images/images';
+
 export interface IPortfolioCard {
     image: string;
     name: string;
     description: string;
     gitHubRepo: string;
     deployment?: string;
-}
+    tags: string[];                        // NEW
+    group?: 'Recent Projects' | 'Early Projects';  // NEW (for section titles)
+  }
 
 const portfolioData: IPortfolioCard[] = [
     {
@@ -13,14 +16,16 @@ const portfolioData: IPortfolioCard[] = [
         name: 'Asphalt Legends v1',
         description: 'Non-React version of Asphalt Legends Unite video game site',
         gitHubRepo: 'https://github.com/JHebenstreit48/asphalt-legends-unite',
-        deployment: 'https://jhebenstreit48.github.io/asphalt-legends-unite/'
+        deployment: 'https://jhebenstreit48.github.io/asphalt-legends-unite/',
+        tags: []
     },
     {
         image: Images.CodeQuest,
         name: 'DevScriptStax',
         description: 'React version of Coding Notes website',
         gitHubRepo: 'https://github.com/JHebenstreit48/DevScriptStax',
-        deployment: 'https://devscriptstax.netlify.app/'
+        deployment: 'https://devscriptstax.netlify.app/',
+        tags: []
     },
     // {
     //     image: Images.StarWars,
@@ -34,28 +39,32 @@ const portfolioData: IPortfolioCard[] = [
         name: 'Portfolio v1',
         description: 'Non-React version of my portfolio',
         gitHubRepo: 'https://github.com/JHebenstreit48/portfolio',
-        deployment: 'https://jhebenstreit48.github.io/coding-study-guide/'
+        deployment: 'https://jhebenstreit48.github.io/coding-study-guide/',
+        tags: []
     },
     {
         image: Images.ALUTracker,
         name: 'ALU Tracker',
         description: 'React version of Asphalt Legends Unite video game site',
         gitHubRepo: 'https://github.com/JHebenstreit48/asphalt-legends-unite-react',
-        deployment: 'https://asphaltlegendsunitetracker.netlify.app/'
+        deployment: 'https://asphaltlegendsunitetracker.netlify.app/',
+        tags: []
     },
     {
         image: Images.NetNotes,
         name: 'NetNotes',
         description: 'A web application for my notes on all things Cisco and IT networking related.',
         gitHubRepo: 'https://github.com/JHebenstreit48/NetNotes',
-        deployment: 'https://netnotes.netlify.app/'
+        deployment: 'https://netnotes.netlify.app/',
+        tags: []
     },
     {
         image: Images.PixelProse,
         name: 'PixelProse',
         description: "A web application for my notes on all things console gaming related.",
         gitHubRepo: 'https://github.com/JHebenstreit48/PixelProse',
-        deployment: 'https://pixelprose.netlify.app/'
+        deployment: 'https://pixelprose.netlify.app/',
+        tags: []
     }
 ];
 

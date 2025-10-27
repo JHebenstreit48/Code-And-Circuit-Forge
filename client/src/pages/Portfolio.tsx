@@ -1,36 +1,42 @@
 import Cards from "@/components/Portfolio/PortfolioCards";
 import Data from "@/components/Portfolio/PortfolioData";
-// import WorkInProgress from "@/components/Portfolio/WorkInProgressAlert";
+
+type GroupName = NonNullable<(typeof Data)[number]["group"]>;
+const GROUP_ORDER: GroupName[] = ["Recent Projects", "Early Projects"];
 
 export default function Portfolio() {
-    return (
-        <>
+  const groupsPresent = Data.some(p => p.group);
 
-            <h1 className='pageHeader'>Portfolio</h1>
+  return (
+    <main className="portfolio" aria-labelledby="portfolio-title">
+      <h1 id="portfolio-title" className="pageHeader">Portfolio</h1>
 
-            <div>
-                {/* <WorkInProgress /> */}
-            </div>
-
-
-            <div className="cardContainer">
+      {!groupsPresent ? (
+        <div className="cardContainer">
+          <div className="row">
+            {Data.map((project, index) => (
+              <Cards key={project.name + index} {...project} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="cardContainer">
+          {GROUP_ORDER.map(group => {
+            const items = Data.filter(p => p.group === group);
+            if (!items.length) return null;
+            return (
+              <section key={group} className="group">
+                <h2 className="groupTitle">{group}</h2>
                 <div className="row">
-
-                    {Data.map((project, index) => (
-                        <Cards
-                            key={project.name + index}
-                            name={project.name}
-                            description={project.description}
-                            image={project.image}
-                            gitHubRepo={project.gitHubRepo}
-                            deployment={project.deployment}
-
-                        />
-                    ))}
-
+                  {items.map((project, index) => (
+                    <Cards key={project.name + index} {...project} />
+                  ))}
                 </div>
-            </div>
-
-        </>
-    )
+              </section>
+            );
+          })}
+        </div>
+      )}
+    </main>
+  );
 }
