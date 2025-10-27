@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Portrait from '@/assets/images/ProfilePicture.jpg';
 import myResume from '@/assets/Justin-Hebenstreit-Programming-Resume.pdf';
-import { featuredProjects } from '@/data/featuredProjects';   // ✅ new
+import { featuredProjects } from '@/data/featuredProjects';
 import '@/SCSS/Home.scss';
 
 export default function Home() {
@@ -34,21 +34,24 @@ export default function Home() {
       </section>
 
       {/* PREVIEW ROW */}
-      <section className="preview">
-        <div className="preview__left">
+      <section className="homePreview">
+        <div className="homePreview__left">
           <h2 className="section-title">Portfolio</h2>
 
-          <div className="preview__cards">
+          <div className="homePreview__cards">
             {featuredProjects.map((p) => (
-              <Link key={p.id} to={p.to} className="card">
-                {p.image && <img className="card__image" src={p.image} alt="" loading="lazy" />}
-                <div className="card__head">
-                  {p.subtitle && <span className="card__kicker">{p.subtitle}</span>}
-                  <h3 className="card__title">{p.title}</h3>
+              <Link key={p.id} to={p.to} className="homeCard">
+                <div className="homeCard__head">
+                  {p.subtitle && <span className="homeCard__kicker">{p.subtitle}</span>}
+                  <h3 className="homeCard__title">{p.title}</h3>
                 </div>
+
+                {/* bigger image after skills */}
+                {p.image && <img className="homeCard__image" src={p.image} alt="" loading="lazy" />}
+
                 {p.tags?.length ? (
-                  <div className="card__tags">
-                    {p.tags.map((t) => <span key={t} className="tag">{t}</span>)}
+                  <div className="homeCard__tags">
+                    {p.tags.map((t) => <span key={t} className="homeTag">{t}</span>)}
                   </div>
                 ) : null}
               </Link>
@@ -56,7 +59,7 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="preview__right">
+        <aside className="homePreview__right">
           <h2 className="section-title">About</h2>
           <p className="about-snippet">
             I ship React/TypeScript apps with clear architecture and data-driven UX,

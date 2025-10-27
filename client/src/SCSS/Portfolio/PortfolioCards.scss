@@ -1,118 +1,128 @@
 @use "sass:color";
 
-/* =============================
-   Variables
-   ============================= */
-$deep-blue: rgba(14, 10, 43, 0.534);
-$teal: rgba(13, 87, 224, 0.925);
+/* ===== Theme (aligned with Home) ===== */
+$cyan: #2fd1c2;
+$text: #e9eef4;
 $gold: rgb(255, 191, 71);
+$card-line: rgba(255, 255, 255, .08);
+$card-ring: rgba(47, 209, 194, .28);
+$card-grad-top: #0f1426;
+$card-grad-bot: #0d1222;
 
-$gradient-blue-cyan: linear-gradient(
-  to bottom,
-  $deep-blue 0%,
-  $teal 41%,
-  $deep-blue 102%
-);
-
-/* =============================
-      Card Layout Wrappers (from Portfolio.tsx)
-      ============================= */
+/* ===== Outer containers (from Portfolio.tsx) ===== */
 .cardContainer {
-  display: flex;
-  justify-content: center;
-  margin: 2rem auto;
+  max-width: 1280px;
+  margin: 2rem auto 3rem auto;
+  padding: 0 24px;
 
-  @media only screen and (max-width: 390px) {
-    margin-top: 15rem;
+  .group { margin-bottom: 2rem; }
+  .groupTitle {
+    margin: 0 0 12px 0;
+    color: var(--accent, #17e7cf);
+    font-weight: 800;
+    font-size: 1.25rem;
   }
 }
 
+/* Use grid so cards line up and wrap cleanly */
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  max-width: 90rem;
-
-  @media only screen and (max-width: 390px) {
-    width: 23rem;
-    gap: 1rem; // Adjust the gap for smaller screens
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
 }
 
-/* =============================
-      Card Box
-      ============================= */
+/* ===== Card ===== */
 .card {
-  border: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 35rem;
-  height: 30rem;
-  background-image: $gradient-blue-cyan;
-  border-radius: 2rem;
-  padding-bottom: 2rem;
+  border-radius: 20px;
+  border: 1px solid $card-line;
+  background: linear-gradient(180deg, $card-grad-top, $card-grad-bot);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35), 0 0 18px rgba(0,219,248,.18);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
 
-  @media only screen and (max-width: 390px) {
-    padding: 0;
-    height: 23rem;
-    margin-bottom: 5rem;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.45),
+                0 0 0 1px $card-ring inset,
+                0 0 22px rgba(0,219,248,.24);
   }
-}
 
-.cardTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $gold;
-  font-size: 1.9rem;
-  margin-top: 0.5rem;
-
-  @media only screen and (max-width: 390px) {
-    width: 85%;
-    display: flex;
-    flex-direction: column;
+  /* Title */
+  .cardTitle {
+    margin: 12px 16px 8px 16px;
+    color: $gold;
+    font-size: 1.3rem;
+    font-weight: 800;
     text-align: center;
   }
-}
 
-/* =============================
-      Image + Overlay
-      ============================= */
-.cardImg {
-  height: 20rem;
-  width: 34.5rem;
+  /* Screenshot: uniform sizing */
+  .imageWrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;      /* ← consistent shape on every card */
+    background: #0a0f1f;
+    overflow: hidden;
 
-  @media only screen and (max-width: 390px) {
-    width: 23rem;
-    height: 12.8rem;
+    .cardImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;       /* crops to keep the aspect while filling */
+      display: block;
+    }
+  }
+
+  /* Tech tags — same look/feel as Home’s chips */
+  .techList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 12px 16px 10px 16px;
+
+    .pill {
+      font-size: .85rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: $text;
+      white-space: nowrap;
+    }
+  }
+
+  /* Links row — centered */
+  .linksRow {
+    display: flex;
+    justify-content: center;   /* ← center GitHub + Live */
+    align-items: center;
+    gap: 12px;
+    margin: 8px 16px 16px 16px;
+    margin-top: auto;          /* stick to the bottom of the card */
+
+    .btnLink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: transparent;
+      color: $text;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background .15s ease, transform .15s ease;
+
+      &:hover { background: rgba(255,255,255,.06); transform: translateY(-1px); }
+      i { font-size: 1.1rem; }
+    }
   }
 }
 
-/* =============================
-      Icons
-      ============================= */
-.icon {
-  font-size: 30px;
-}
-
-.liveAndDeploy {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-
-  .githubIcon {
-    color: $gold;
-    text-decoration: none;
-    font-size: 2rem;
-  }
-
-  .deploymentIcon {
-    color: $gold;
-    margin-left: 10rem;
-    text-decoration: none;
-    font-size: 2rem;
-  }
+/* ===== Small screens ===== */
+@media (max-width: 480px) {
+  .cardContainer { padding: 0 16px; }
+  .row { gap: 18px; grid-template-columns: 1fr; }
 }
