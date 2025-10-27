@@ -1,4 +1,3 @@
-/* src/SCSS/AboutMe/Bio.scss */
 @use "sass:color";
 @use "@scss/Globals" as *;
 
@@ -12,15 +11,15 @@ $text-color: white;
 $text-shadow: 5px 3px 11px $teal-shadow;
 
 $radius-xl: 30px;
-$width-large: 70rem;  // kept for cap
+$width-large: 70rem;  // ~1120px
 $font-lg: 1.5rem;
 
 /* ===== bio card ===== */
 .about {
   display: flex;
   flex-direction: column;
-  align-items: stretch;   /* let inner content fill width */
-  text-align: left;       /* desktop readability */
+  align-items: stretch;
+  text-align: left;
 
   color: $text-color;
   text-shadow: $text-shadow;
@@ -34,11 +33,13 @@ $font-lg: 1.5rem;
     0 10px 28px rgba(0,0,0,.35),
     0 0 18px rgba(0,219,248,.22);
 
-  width: min(100%, $width-large);
-  max-width: 920px;
+  /* --- width/centering (fixed) --- */
+  width: min(100%, $width-large);   /* lets it grow up to ~1120px */
+  /* remove the 920px clamp so parent (1100px) can take effect */
+  max-width: none;                  /* <- was 920px */
+  margin: 0 auto;                   /* <- was 0, now self-centers too */
 
   padding: clamp(18px, 2.8vw, 36px) clamp(18px, 3.2vw, 44px);
-  margin: 0;                          /* no huge bottom margin */
   font-size: clamp(1.1rem, 1rem + .35vw, $font-lg);
   line-height: 1.65;
 
@@ -47,7 +48,6 @@ $font-lg: 1.5rem;
     margin-top: clamp(12px, 2vw, 18px);
     padding-bottom: 0;
 
-    /* nicer bullets */
     ul { margin: .75rem 0 0; padding-left: 1.35rem; }
     li { margin: .4rem 0; }
   }

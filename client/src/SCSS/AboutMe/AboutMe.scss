@@ -1,90 +1,61 @@
-/* src/SCSS/AboutMe/AboutMe.scss */
-@use "sass:color";
 @use "@scss/Globals" as *;
 
-/* ===== keep your local variables ===== */
-$border-highlight: rgb(169, 30, 255);
-$box-glow: rgb(0, 219, 248);
-$radius-circle: 1rem;
+/* page gutter tokens (edit to taste) */
+$gutter-desktop: 24px;
+$gutter-tablet: 20px;
+$gutter-phone: 16px;
 
-/* ===== page layout: 3 columns (media | gap | text) ===== */
 .aboutHero {
-  /* keeps content from kissing the sticky header */
-  padding-top: clamp(14px, 2.2vw, 24px);
-  padding-bottom: clamp(18px, 3vw, 36px);
+  padding-top: 24px;
+  padding-bottom: 48px;
+  /* if you're linking to #about, this avoids header overlap */
+  scroll-margin-top: 80px;
 
+  /* ===== container ===== */
   .aboutHero__inner {
-    width: min(1200px, 92vw);
-    margin-inline: auto;
-
-    display: grid;
-    /* media | gap | text */
-    grid-template-columns:
-      clamp(190px, 22vw, 260px)
-      clamp(22px, 4vw, 56px)
-      1fr;
-    row-gap: clamp(18px, 2.4vw, 28px);
-    align-items: start;
-  }
-
-  /* Title aligns to the text column (no overlap with portrait) */
-  &__title {
-    grid-column: 3 / 4;
-    margin: 0 0 clamp(8px, 1.4vw, 12px);
-  }
-
-  /* Portrait column */
-  &__media { grid-column: 1 / 2; margin-top: clamp(6px, 1vw, 10px); }
-  &__portrait {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $gutter-desktop;
     display: block;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: $radius-circle;
 
-    border: 2px solid $border-highlight;
-    box-shadow:
-      0 0 0 1px rgba(169, 30, 255, .35),
-      0 10px 28px rgba(0,0,0,.35),
-      0 0 22px rgba(0, 219, 248, .25);
+    @include maxw($tablet-portrait) { padding: 0 $gutter-tablet; }
+    @include maxw($cellphone-portrait) { padding: 0 $gutter-phone; }
   }
 
-  /* Bio column */
-  &__text { grid-column: 3 / 4; max-width: 920px; }
+  /* ===== title =====
+     Option A (default): aligns with card edge.
+     If you want it a bit further left, uncomment margin-left line. */
+  .aboutHero__title {
+    margin: 0 0 0 7rem;
 
-  /* ===== responsive ===== */
-  @include maxw($tablet-portrait) {
-    .aboutHero__inner {
-      grid-template-columns: 1fr;
-      justify-items: center;
+    /* Uncomment to “hang” the title left past the inner gutter:
+    margin-left: -$gutter-desktop;
+    @include maxw($tablet-portrait) { margin-left: 0; }
+    */
+
+    @include maxw($tablet-portrait) {
+      text-align: center;
+      margin-bottom: 14px;
     }
-    &__title { grid-column: 1 / -1; text-align: center; }
-    &__media { grid-column: 1 / -1; }
-    &__text  { grid-column: 1 / -1; max-width: 100%; }
   }
 
-  @include maxw($cellphone-portrait) {
-    &__portrait { width: min(58vw, 280px); }
+  /* ===== text/card wrapper ===== */
+  .aboutHero__text {
+    width: 100%;
+
+    /* The Bio card element (from Bio.scss) */
+    > * {
+      width: 100%;
+      max-width: 1100px;     /* bump to 1200px if you want more width */
+      margin: 0 auto;        /* center the card */
+      line-height: 1.7;
+
+      @include maxw($tablet-portrait) { max-width: 760px; }
+      @include maxw($cellphone-portrait) { max-width: 100%; }
+    }
+
+    /* comfy list spacing inside the card */
+    ul { padding-left: 20px; margin-top: 12px; }
+    li { margin: 6px 0; }
   }
-}
-
-/* ===== back-compat with your old picture classes (safe to keep) ===== */
-.profilePictureContainer {
-  display: flex;
-  width: 10rem; height: 10rem;
-  margin: 0; /* grid controls spacing now */
-  &:not(:has(+ *)) { margin: 2rem 8rem 0; }
-
-  @include maxw($cellphone-portrait) { margin: 0 auto 1rem auto; }
-}
-
-.profilePicture {
-  border-radius: $radius-circle;
-  width: 16rem; height: 16rem;
-  border: 2px solid $border-highlight;
-  box-shadow: 0 0 0 1px rgba(169,30,255,.35),
-              0 10px 28px rgba(0,0,0,.35),
-              0 0 22px rgba(0,219,248,.25);
-
-  @include maxw($cellphone-portrait) { width: min(58vw, 280px); height: auto; }
 }

@@ -49,7 +49,7 @@ $gradient-blue-cyan: linear-gradient(
   flex-direction: column;
   align-items: center;
   width: 35rem;
-  height: 35rem;
+  height: 30rem;
   background-image: $gradient-blue-cyan;
   border-radius: 2rem;
   padding-bottom: 2rem;
@@ -67,7 +67,7 @@ $gradient-blue-cyan: linear-gradient(
   align-items: center;
   color: $gold;
   font-size: 1.9rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 
   @media only screen and (max-width: 390px) {
     width: 85%;
@@ -81,9 +81,8 @@ $gradient-blue-cyan: linear-gradient(
       Image + Overlay
       ============================= */
 .cardImg {
-  height: 25rem;
-  width: 35rem;
-  object-fit: cover;
+  height: 20rem;
+  width: 34.5rem;
 
   @media only screen and (max-width: 390px) {
     width: 23rem;
@@ -96,31 +95,24 @@ $gradient-blue-cyan: linear-gradient(
       ============================= */
 .icon {
   font-size: 30px;
-
-  @media only screen and (max-width: 390px) {
-  }
 }
 
 .liveAndDeploy {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
 
   .githubIcon {
     color: $gold;
     text-decoration: none;
-    font-size: 2.2rem;
-    margin-top: 2rem;
+    font-size: 2rem;
   }
 
   .deploymentIcon {
     color: $gold;
     margin-left: 10rem;
     text-decoration: none;
-    font-size: 2.2rem;
-    margin-top: 2rem;
-  }
-
-  @media only screen and (max-width: 390px) {
+    font-size: 2rem;
   }
 }
