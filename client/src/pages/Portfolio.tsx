@@ -1,15 +1,12 @@
 import Cards from "@/components/Portfolio/PortfolioCards";
 import Data from "@/components/Portfolio/PortfolioData";
 
-// Preserve your inferred type from data:
 type GroupName = NonNullable<(typeof Data)[number]["group"]>;
 
-// Include both new and legacy labels; order is display priority.
 const GROUP_ORDER: GroupName[] = [
   "Early Projects",
   "Current Projects",
   "Planned Projects",
-  
 ];
 
 export default function Portfolio() {

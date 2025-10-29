@@ -1,6 +1,6 @@
 import { Images } from '@/assets/images/images';
 
-export type ProjectGroup = 'Current Projects' | 'Early Projects' | 'Planned Projects';
+export type ProjectGroup = 'Early Projects' |'Current Projects' | 'Planned Projects';
 
 export interface IPortfolioCard {
     image?: string;
@@ -23,7 +23,7 @@ const portfolioData: IPortfolioCard[] = [
         description: 'Non-React version of Star Wars website',
         gitHubRepo: 'https://github.com/JHebenstreit48/star-wars',
         deployment: 'https://jhebenstreit48.github.io/star-wars/',
-        tags: [],
+        tags: ["HTML", "CSS"],
         group: 'Early Projects',
     },
     {
@@ -53,7 +53,7 @@ const portfolioData: IPortfolioCard[] = [
         description: 'React version of Asphalt Legends Unite video game site',
         gitHubRepo: 'https://github.com/JHebenstreit48/asphalt-legends-unite-react',
         deployment: 'https://asphaltlegendsunitetracker.netlify.app/',
-        tags: [],
+        tags: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB", "Express", "Netlify", "Render.com"],
         group: 'Current Projects',
     },
     {
@@ -62,7 +62,7 @@ const portfolioData: IPortfolioCard[] = [
         description: 'React version of Coding Notes website',
         gitHubRepo: 'https://github.com/JHebenstreit48/DevScriptStax',
         deployment: 'https://devscriptstax.netlify.app/',
-        tags: [],
+        tags: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB", "Express", "Netlify", "Render.com"],
         group: 'Current Projects',
     },
     {
@@ -71,7 +71,7 @@ const portfolioData: IPortfolioCard[] = [
         description: 'A web application for my notes on all things Cisco and IT networking related.',
         gitHubRepo: 'https://github.com/JHebenstreit48/NetNotes',
         deployment: 'https://netnotes.netlify.app/',
-        tags: [],
+        tags: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB", "Express", "Netlify", "Render.com"],
         group: 'Current Projects',
     },
     {
@@ -80,7 +80,7 @@ const portfolioData: IPortfolioCard[] = [
         description: "A web application for my notes on all things console gaming related.",
         gitHubRepo: 'https://github.com/JHebenstreit48/PixelProse',
         deployment: 'https://pixelprose.netlify.app/',
-        tags: [],
+        tags: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB", "Express", "Netlify", "Render.com"],
         group: 'Current Projects',
     },
     {
@@ -89,7 +89,7 @@ const portfolioData: IPortfolioCard[] = [
         description: 'A web application for my notes on all things mobile app and game development.',
         gitHubRepo: 'https://github.com/JHebenstreit48/AppFoundry',
         deployment: 'https://appfoundry.netlify.app/',
-        tags: [],
+        tags: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB", "Express", "Netlify", "Render.com"],
         group: 'Current Projects',
     },
     // --------------------- Current Projects End -------------------
@@ -99,9 +99,9 @@ const portfolioData: IPortfolioCard[] = [
         // image: Images.Film2Bytes,
         name: 'Film2Bytes',
         description: 'A web application for my film scanning and retouch services business.',
-        gitHubRepo: '',
+        gitHubRepo: 'https://github.com/JHebenstreit48/Film2Bytes',
         deployment: '',
-        tags: [],
+        tags: ["Angular", "TypeScript", "SCSS", "Node.js"],
         group: 'Planned Projects',
     },
     // --------------------- Planned Projects End -------------------
