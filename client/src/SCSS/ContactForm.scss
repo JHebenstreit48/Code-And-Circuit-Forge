@@ -22,7 +22,7 @@ $focus-ring: rgba($cyan, .16);
 
 /* ===== Container ===== */
 .formContainer {
-  margin: 3rem auto 7rem auto;
+  margin: 0.2rem auto 7rem auto;
   width: $width-form;
 
   display: flex;
@@ -129,7 +129,7 @@ $focus-ring: rgba($cyan, .16);
   @include maxw($cellphone-portrait) { min-height: 7.25rem; }
 }
 
-/* ===== Submit ===== */
+/* ===== Submit (with variants) ===== */
 .submitButton {
   align-self: center;                 /* center the button under the fields */
   margin-top: 18px;
@@ -145,8 +145,9 @@ $focus-ring: rgba($cyan, .16);
   border-radius: $radius-md;
   cursor: pointer;
 
-  background-color: $button-bg;
-  color: #061a1a;
+  /* SOLID variant (default) */
+  background: linear-gradient(180deg, color.mix($button-bg, #000, 8%), $button-bg);
+  color: #ffffff; /* better contrast than near-black on cyan */
   font-weight: 800;
   font-size: 1.02rem;
   letter-spacing: .2px;
@@ -155,7 +156,7 @@ $focus-ring: rgba($cyan, .16);
     0 6px 18px rgba($cyan, .22),
     0 0 0 1px rgba(255,255,255,.06) inset;
 
-  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease, background .15s ease;
 
   &:hover   { transform: translateY(-1px); box-shadow: 0 10px 26px rgba($cyan, .28); }
   &:active  { transform: translateY(0); }
@@ -165,6 +166,17 @@ $focus-ring: rgba($cyan, .16);
     width: 48%;
     padding: 12px;
     font-size: 1rem;
+  }
+
+  /* OUTLINE variant (optional) */
+  &.submitButton--outline {
+    background: transparent;
+    color: $cyan;
+    border: 1px solid $cyan;
+    box-shadow: none;
+
+    &:hover   { background: rgba($cyan, .08); box-shadow: 0 6px 18px rgba($cyan, .18); }
+    &:active  { background: rgba($cyan, .12); }
   }
 }
 
