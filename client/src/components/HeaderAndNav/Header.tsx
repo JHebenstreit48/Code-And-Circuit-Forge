@@ -1,24 +1,18 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import Navigation from "@/components/HeaderAndNav/Navigation";
-import "@/SCSS/HeaderNavAndFooter/Header.scss";
+import Navigation from '@/components/HeaderAndNav/Navigation';
+import links from '@/components/HeaderAndNav/navigationLinks';
+import '@/SCSS/HeaderNavAndFooter/Header.scss';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-
-  // same links from Navigation.tsx, duplicated locally (no exports = no warning)
-  const links = [
-    { title: 'About', path: '/about' },
-    { title: 'Portfolio', path: '/portfolio' },
-    { title: 'Skills', path: '/resume' },
-    { title: 'Contact', path: '/contact' },
-  ];
 
   useEffect(() => {
     document.body.classList.toggle('no-scroll', open);
     return () => document.body.classList.remove('no-scroll');
   }, [open]);
 
+  const toggle = () => setOpen(o => !o);
   const close = () => setOpen(false);
 
   return (
@@ -28,16 +22,16 @@ export default function Header() {
           <span className="brand__text">Justin Hebenstreit</span>
         </Link>
 
-        {/* Desktop nav (hidden on mobile) */}
+        {/* Desktop nav */}
         <Navigation />
 
-        {/* Hamburger icon (mobile only) */}
+        {/* Mobile hamburger */}
         <button
           className="hamburger"
-          aria-label="Open menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           aria-controls="mobileNav"
           aria-expanded={open}
-          onClick={() => setOpen(o => !o)}
+          onClick={toggle}
         >
           <span />
           <span />
@@ -45,7 +39,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer (hidden on desktop by CSS) */}
       <nav id="mobileNav" className={`mobileNav ${open ? 'is-open' : ''}`} aria-label="Mobile">
         {links.map(({ title, path }) => (
           <NavLink key={title} to={path} className="mobileNav__link" onClick={close}>
@@ -54,7 +48,7 @@ export default function Header() {
         ))}
       </nav>
 
-      {/* Backdrop */}
+      {/* Backdrop (hidden on desktop by CSS) */}
       <button
         className={`mobileBackdrop ${open ? 'is-open' : ''}`}
         aria-label="Close menu"

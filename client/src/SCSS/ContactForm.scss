@@ -1,115 +1,178 @@
 @use "sass:color";
 @use "@scss/Globals" as *;
 
-/* =============================
-   Variables
-   ============================= */
-   $highlight-color: rgb(109, 9, 172);
-   $glow-color: #000;
-   $shadow-color: rgb(0, 219, 248);
-   $gradient-purple-orange: linear-gradient(
-    to bottom,
-    rgba(62, 19, 83, 0.199),
-    rgba(70, 40, 21, 0.596)
-  );
-   
-   $text-light: white;
-   $accent-orange: rgba(243, 152, 16, 0.87);
-   $button-bg: rgb(79, 13, 121);
-   
-   $radius-lg: 10px;
-   $radius-sm: 5px;
-   $radius-md: 8px;
-   
-   $width-form: 50rem;
-   $width-input: 70%;
-   $width-button: 23%;
-   $font-md: 1.2rem;
-   
-   /* =============================
-      Contact Form Container
-      ============================= */
-   .formContainer {
-     margin: 3rem auto 7rem auto;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-     border: 2px solid $highlight-color;
-     box-shadow: 0px 1px 25px $shadow-color;
-     background-image: $gradient-purple-orange;
-     border-radius: $radius-lg;
-     padding: 50px;
-     width: $width-form;
-     color: $text-light;
+/* ===== Local tokens (built on Globals) ===== */
+$gradient-purple-orange: linear-gradient(180deg, rgba(30,22,48,.55), rgba(43,26,24,.45));
 
-   
-     /* ========== Responsive: Small Screens ========== */
-     @media only screen and (max-width: 390px) {
-       width: 95%;
-       padding: 20px;
-       margin: 15rem auto 0 auto;
-     }
-   }
-   
-   /* =============================
-      Labels
-      ============================= */
-   .label {
-     font-size: $font-md;
-     font-weight: bold;
-     color: $accent-orange;
-     margin: 10px;
-     text-shadow: 2px 3px 2px $glow-color;
-   }
-   
-   /* =============================
-      Input Fields
-      ============================= */
-   .textField {
-     display: flex;
-     width: $width-input;
-     margin: 10px;
-     border-radius: $radius-sm;
-   
-     /* ========== Responsive ========== */
-     @media only screen and (max-width: 390px) {
-       width: 90%;
-     }
-   }
-   
-   .messageField {
-     display: flex;
-     width: $width-input;
-     margin-top: 3px;
-     border-radius: $radius-sm;
-     height: 8rem;
-   
-     /* ========== Responsive ========== */
-     @media only screen and (max-width: 390px) {
-       width: 90%;
-     }
-   }
-   
-   /* =============================
-      Submit Button
-      ============================= */
-   .submitButton {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: $width-button;
-     margin-top: 25px;
-     padding: 12px;
-     border-radius: $radius-md;
-     background-color: $button-bg;
-     color: $text-light;
-     font-size: $font-md;
-     cursor: pointer;
-   
-     /* ========== Responsive ========== */
-     @media only screen and (max-width: 390px) {
-       width: 30%;
-     }
-   }
-   
+$radius-lg: 14px;
+$radius-sm: 10px;
+$radius-md: 12px;
+
+/* tighter, responsive container */
+$width-form: min(680px, 92vw);
+/* full-width inputs; keep var name for compatibility */
+$width-input: 100%;
+$font-md: 1.05rem;
+
+/* field surfaces */
+$field-bg: rgba(255,255,255,.06);
+$field-bd: rgba(255,255,255,.14);
+$field-bg-focus: color.adjust($field-bg, $alpha: -0.08);
+$focus-ring: rgba($cyan, .16);
+
+/* ===== Container ===== */
+.formContainer {
+  margin: 3rem auto 7rem auto;
+  width: $width-form;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+  text-align: left; /* ← fixes centered labels */
+
+  padding: 28px 28px;
+
+  color: $text;
+  background-image: $gradient-purple-orange;
+  border: 1px solid $highlight-color;
+  border-radius: $radius-lg;
+
+  /* soften the aura so the card feels crisp, not fuzzy */
+  backdrop-filter: blur(6px) saturate(110%);
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    0 16px 36px rgba(0,0,0,.34),
+    0 0 22px rgba($cyan, .28);
+
+  @include maxw($cellphone-portrait) {
+    padding: 16px 14px;
+    margin: 1.25rem auto 2rem auto;
+    border-radius: 12px;
+    gap: 0.5rem;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.04) inset,
+      0 12px 24px rgba(0,0,0,.32),
+      0 0 16px rgba($cyan, .22);
+  }
+}
+
+/* honeypot */
+.hp { display: none !important; }
+
+/* ===== Labels ===== */
+.label {
+  font-size: $font-md;
+  font-weight: 800;
+  color: $accent-orange;
+  margin: 6px 0 6px 2px; /* small left tooth for alignment */
+  text-shadow: 0 1px 0 rgba($glow-color, .7);
+
+  @include maxw($cellphone-portrait) {
+    font-size: 1rem;
+    margin: 4px 0 4px 1px;
+  }
+}
+
+/* ===== Inputs ===== */
+.textField,
+.messageField {
+  width: $width-input;
+  display: block;
+
+  border-radius: $radius-sm;
+  border: 1px solid $field-bd;
+  background: $field-bg;
+  color: $text;
+  outline: none;
+
+  padding: 12px 12px;
+  font-size: 1rem;
+  line-height: 1.4;
+
+  transition:
+    border-color .15s ease,
+    box-shadow .15s ease,
+    background .15s ease,
+    transform .12s ease;
+
+  &:focus {
+    border-color: $cyan;
+    background: $field-bg-focus;
+    box-shadow: 0 0 0 4px $focus-ring;
+  }
+
+  /* subtle hover only on desktops */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: translateY(-1px); }
+  }
+
+  /* if you later add aria-invalid from TSX */
+  &[aria-invalid="true"] {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 4px rgba(255,107,107,.15);
+  }
+
+  @include maxw($cellphone-portrait) {
+    padding: 12px 10px;
+    font-size: 1rem;
+  }
+}
+
+.textField  { margin: 0 0 12px 0; }
+.messageField {
+  margin: 0;
+  min-height: 9.25rem;
+  resize: vertical;
+
+  @include maxw($cellphone-portrait) { min-height: 7.25rem; }
+}
+
+/* ===== Submit ===== */
+.submitButton {
+  align-self: center;                 /* center the button under the fields */
+  margin-top: 18px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 9rem;
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  background-color: $button-bg;
+  color: #061a1a;
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: .2px;
+
+  box-shadow:
+    0 6px 18px rgba($cyan, .22),
+    0 0 0 1px rgba(255,255,255,.06) inset;
+
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+
+  &:hover   { transform: translateY(-1px); box-shadow: 0 10px 26px rgba($cyan, .28); }
+  &:active  { transform: translateY(0); }
+  &:disabled{ opacity: .65; cursor: wait; }
+
+  @include maxw($cellphone-portrait) {
+    width: 48%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
+
+/* ===== Optional status text ===== */
+.statusNote {
+  min-height: 1.2rem;
+  color: rgba(255,255,255,.85);
+  text-align: center;
+
+  @include maxw($cellphone-portrait) { margin-top: 8px; }
+}

@@ -1,65 +1,157 @@
 @use "sass:color";
+@use "@scss/Globals" as *;
 
 /* =============================
-   Variables
+   Theme tokens (local)
    ============================= */
-   $footer-bg: rgb(41, 41, 41);
-   $footer-text: rgb(255, 255, 255);
-   $icon-size: 2rem;
-   $spacing-sm: 1rem;
-   $spacing-md: 1.5rem;
-   $spacing-lg: 2rem;
-   
-   /* =============================
-      Footer Container
-      ============================= */
+
+$footer-dim: color.adjust($footer-fg, $alpha: -0.35);
+$ring: color.mix($accent, #fff, 35%);
+
+$icon-size: 1.25rem;
+$maxw: 1200px;
+
+/* =============================
+   Container
+   ============================= */
    .footer {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 100%;
-     background-color: $footer-bg;
-     color: $footer-text;
-     padding: $spacing-sm;
-     text-align: center;
-   
-     /* ========== Responsive: Small Screens ========== */
-     @media only screen and (max-width: 464px) {
-       margin-top: 2.5rem;
-       color: $footer-text;
-   
-       p {
-         margin-top: 0.4rem;
-       }
-     }
-   }
-   
-   /* =============================
-      Social Media Link Containers
-      ============================= */
-   .GitHub-link {
-     display: flex;
-     margin-left: $spacing-md;
-     margin-right: $spacing-lg;
-     margin-bottom: $spacing-sm;
-   }
-   
-   .LinkedIn-link {
-     display: flex;
-     margin-right: $spacing-sm;
-     margin-bottom: $spacing-sm;
-   }
-   
-   /* =============================
-      Social Media Icons
-      ============================= */
-   .GitHub {
-     color: $footer-text;
-     font-size: $icon-size;
-   }
-   
-   .LinkedIn {
-     color: $footer-text;
-     font-size: $icon-size;
-   }
-   
+    width: 100%;
+    color: $footer-fg;
+    background:
+      radial-gradient(1200px 400px at 20% -20%, rgba(122,92,255,0.10), transparent),
+      radial-gradient(900px 300px at 80% -10%, rgba(0,212,255,0.08), transparent),
+      linear-gradient(180deg, #191a1f 0%, $footer-bg 100%);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: saturate(120%);
+  }
+  
+  .footer__inner {
+    max-width: $maxw;
+    margin: 0 auto;
+    padding: clamp(1rem, 2.5vw, 2rem) clamp(1rem, 3vw, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(0.75rem, 2vw, 2rem);
+    flex-wrap: wrap;
+  
+    @include maxw($cellphone-portrait) {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+  
+  /* =============================
+     Brand / Copy
+     ============================= */
+  .footer__brand {
+    min-width: 260px;
+  
+    @include maxw($cellphone-portrait) {
+      flex-basis: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  .footer__copy {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .2px;
+  }
+  
+  .footer__name { color: #fff; }
+  
+  .footer__tag {
+    margin: .2rem 0 0 0;
+    font-size: .9rem;
+    color: $footer-dim;
+    letter-spacing: .2px;
+  }
+  
+  /* =============================
+     Quick Nav
+     ============================= */
+  .footer__nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(.5rem, 2vw, 1.25rem);
+  
+    a {
+      color: $footer-fg;
+      text-decoration: none;
+      font-size: .95rem;
+      opacity: .85;
+      position: relative;
+      transition: opacity .2s ease, transform .2s ease;
+      &:hover { opacity: 1; transform: translateY(-1px); }
+      &:focus-visible {
+        outline: 3px solid $ring;
+        outline-offset: 2px;
+        border-radius: 6px;
+      }
+    }
+  
+    @include maxw($cellphone-portrait) {
+      order: 3;
+      flex-basis: 100%;
+      justify-content: center;
+      margin-top: .25rem;
+    }
+  }
+  
+  /* =============================
+     Social Icons
+     ============================= */
+  .footer__social {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  
+    @include maxw($cellphone-portrait) {
+      flex-basis: 100%;
+      justify-content: center;
+    }
+  }
+  
+  .icon-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: inline-grid;
+    place-items: center;
+    font-size: $icon-size;
+    color: $footer-fg;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  
+    i { pointer-events: none; }
+  
+    &:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-1.5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+      border-color: rgba(255,255,255,0.22);
+    }
+  
+    &:focus-visible {
+      outline: 3px solid $ring;
+      outline-offset: 2px;
+    }
+  }
+  
+  .icon-btn--text {
+    font-weight: 700;
+    line-height: 1;
+    font-size: 1rem;
+  }
+  
+  /* =============================
+     Motion Safety
+     ============================= */
+  @media (prefers-reduced-motion: reduce) {
+    .icon-btn, .footer__nav a { transition: none; }
+  }
