@@ -2,41 +2,97 @@
 @use "@scss/Globals" as *;
 
 .GlassWrapper {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
+  position: sticky; top: 0; z-index: 1000; width: 100%;
   background: rgba(16, 17, 23, 0.45);
   backdrop-filter: blur(8px) saturate(115%);
   -webkit-backdrop-filter: blur(8px) saturate(115%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
 
   .GlassWrapper__inner {
-    /* SIMPLE: fixed cap + normal padding */
-    max-width: 1600px;   /* increase/decrease if you want wider/narrower */
-    margin: 0 2rem 0 2rem;
-    padding: 10px 20px;  /* brand sits closer to left edge */
+    max-width: 1600px;
+    margin: 0 2rem;
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    @include maxw($cellphone-portrait) {
+      margin: 0 1rem; padding: 10px 0;
+    }
   }
 
   .brand {
     text-decoration: none;
     .brand__text {
-      color: #2fd1c2;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      font-size: 1.25rem;  /* easy to tweak */
+      color: $cyan;
+      font-weight: 700;
+      letter-spacing: .3px;
+      font-size: 1.25rem;
       line-height: 1;
       white-space: nowrap;
+
+      @include maxw($cellphone-portrait) {
+        font-size: 1.35rem; /* small bump on phones */
+      }
     }
   }
 
+  /* Desktop nav visible by default; hamburger hidden by default */
+  .hamburger {
+    display: none;
+  }
+
+  /* ---- Mobile-only styles ---- */
   @include maxw($cellphone-portrait) {
-    .GlassWrapper__inner { padding: 10px 14px; gap: 8px; }
-    .brand .brand__text { font-size: 1.1rem; }
+    /* hide desktop nav; show hamburger */
+    .mainNav { display: none; }
+
+    .hamburger {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 40px; height: 36px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      cursor: pointer;
+
+      span {
+        display: block;
+        height: 2px; width: 22px;
+        margin: 0 auto;
+        background: $text;
+        border-radius: 2px;
+      }
+    }
+
+    /* slide-down drawer */
+    .mobileNav {
+      position: fixed; top: 56px; left: 0; right: 0;
+      transform: translateY(-16px);
+      opacity: 0; pointer-events: none;
+      background: rgba(12,16,28,.96);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: grid; gap: 8px; padding: 12px 16px;
+      transition: transform .2s ease, opacity .2s ease;
+
+      &.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .mobileNav__link {
+        padding: 10px 6px;
+        color: $text; text-decoration: none; font-weight: 600;
+        border-radius: 8px;
+        &:hover { background: rgba(255,255,255,.06); }
+      }
+    }
+
+    .mobileBackdrop {
+      position: fixed; inset: 0; top: 56px; /* below header */
+      background: rgba(0,0,0,.35);
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s ease;
+      &.is-open { opacity: 1; pointer-events: auto; }
+    }
   }
 }
+
+/* prevent body scroll when drawer is open */
+.no-scroll { overflow: hidden; }

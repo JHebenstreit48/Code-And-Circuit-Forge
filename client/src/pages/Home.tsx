@@ -36,7 +36,7 @@ export default function Home() {
       {/* PREVIEW ROW */}
       <section className="homePreview">
         <div className="homePreview__left">
-          <h2 className="section-title">Portfolio</h2>
+          <h2 className="homeSectionTitle">Portfolio</h2>
 
           <div className="homePreview__cards">
             {featuredProjects.map((p) => (
@@ -60,7 +60,7 @@ export default function Home() {
         </div>
 
         <aside className="homePreview__right">
-          <h2 className="section-title">About</h2>
+          <h2 className="homeSectionTitle">About</h2>
           <p className="about-snippet">
             I ship React/TypeScript apps with clear architecture and data-driven UX,
             from calculators to content systems. Recently: navigation architecture,
