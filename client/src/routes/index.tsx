@@ -5,7 +5,7 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Portfolio from "@/pages/Portfolio";
-import Resume from "@/pages/Skills";
+import Skills from "@/pages/Skills";
 
  
  
@@ -32,8 +32,8 @@ import Resume from "@/pages/Skills";
           element: <Portfolio />,
         },
         {
-          path: 'resume',
-          element: <Resume />,
+          path: 'skills',
+          element: <Skills />,
         },
       ],
     },

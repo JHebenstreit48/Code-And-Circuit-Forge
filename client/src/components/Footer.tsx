@@ -1,30 +1,55 @@
+import { Link } from 'react-router-dom';
 import '@/SCSS/HeaderNavAndFooter/Footer.scss';
 
 export default function Footer() {
-    return (
+  const year = new Date().getFullYear();
 
-        <>
+  return (
+    <footer className="footer" role="contentinfo">
+      <div className="footer__inner">
+        {/* Brand / Tagline */}
+        <div className="footer__brand">
+          <p className="footer__copy">© {year} <span className="footer__name">Justin Hebenstreit</span></p>
+          <p className="footer__tag">React · TypeScript · Clean architecture · Data-driven UX</p>
+        </div>
 
-            <footer className="footer">
+        {/* Quick Nav — match your page anchors/routes */}
+        <nav className="footer__nav" aria-label="Footer">
+          <Link to="/about">About</Link>
+          <Link to="/portfolio">Portfolio</Link>
+          <Link to="/skills">Skills</Link>
+          <Link to="/contact">Contact</Link>
+        </nav>
 
-                <div className='createdBy'>
+        {/* Social */}
+        <div className="footer__social">
+          <a
+            className="icon-btn"
+            href="https://github.com/JHebenstreit48"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i className="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
 
-                    <p>Created by Justin Hebenstreit</p>
+          <a
+            className="icon-btn"
+            href="https://www.linkedin.com/in/justin-hebenstreit-6ba22920/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+          >
+            <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
+          </a>
 
-                </div>
-
-                <div className="GitHub-link">
-
-                    <a className='GitHub' href="https://github.com/JHebenstreit48" target="_blank"><i className="fa-brands fa-github"></i></a>
-                </div>
-
-                <div className="LinkedIn-link">
-                    <a className='LinkedIn' href="https://www.linkedin.com/in/justin-hebenstreit-6ba22920/" target="_blank" ><i className="fa-brands fa-linkedin"></i></a>
-                </div>
-
-            </footer>
-        </>
-
-    );
-
-};
+          <a className="icon-btn icon-btn--text" href="#top" aria-label="Back to top" title="Back to top">
+            ↑
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+}

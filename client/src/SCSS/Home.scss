@@ -1,14 +1,5 @@
+@use "sass:color";
 @use "@scss/Globals" as *;
-
-$cyan: #2fd1c2;
-$text: #e9eef4;
-$kicker: #8fe9df;
-$card-line: rgba(255,255,255,.08);
-$card-ring: rgba(47, 209, 194, .28);
-
-/* gradient to match Portfolio cards */
-$card-grad-top: #0f1426;
-$card-grad-bot: #0d1222;
 
 /* ---------------- Page container ---------------- */
 .home {
@@ -18,13 +9,13 @@ $card-grad-bot: #0d1222;
   color: $text;
 }
 
-/* ---------------- HERO (unchanged) ---------------- */
+/* ---------------- HERO ---------------- */
 .hero {
   display: grid;
   grid-template-columns: clamp(180px, 22vw, 240px) 1fr;
   gap: clamp(18px, 3vw, 40px);
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 
   .hero__portrait {
     width: 100%;
@@ -32,44 +23,74 @@ $card-grad-bot: #0d1222;
     object-fit: cover;
     border-radius: 16px;
     border: 2px solid rgb(169, 30, 255);
-    box-shadow:
-      0 0 0 1px rgba(169,30,255,.28),
-      0 10px 28px rgba(0,0,0,.35),
-      0 0 18px rgba(0,219,248,.22);
+    box-shadow: 0 0 0 1px rgba(169, 30, 255, 0.28),
+      0 10px 28px rgba(0, 0, 0, 0.35), 0 0 18px rgba(0, 219, 248, 0.22);
   }
 
-  .hero__title   { margin: 0 0 .35rem; font-size: clamp(2.25rem, 1.6rem + 2.2vw, 3.4rem); line-height: 1.05; }
-  .hero__tagline { margin: 0 0 clamp(12px, 2vw, 18px); opacity: .9; font-size: clamp(1rem, .95rem + .4vw, 1.25rem); }
-  .hero__ctas { display: flex; gap: clamp(10px, 1.4vw, 16px); flex-wrap: wrap; }
+  .hero__title {
+    margin: 0 0 0.35rem;
+    font-size: clamp(2.25rem, 1.6rem + 2.2vw, 3.4rem);
+    line-height: 1.05;
+  }
+  .hero__tagline {
+    margin: 0 0 clamp(12px, 2vw, 18px);
+    opacity: 0.9;
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
+  }
+  .hero__ctas {
+    display: flex;
+    gap: clamp(10px, 1.4vw, 16px);
+    flex-wrap: wrap;
+  }
 
   @include maxw($tablet-portrait) {
     grid-template-columns: 1fr;
     text-align: center;
-    .hero__ctas { justify-content: center; }
-    .hero__portrait { width: min(58vw, 280px); justify-self: center; }
+    .hero__ctas {
+      justify-content: center;
+    }
+    .hero__portrait {
+      width: min(58vw, 280px);
+      justify-self: center;
+    }
   }
 }
 
-/* ---------------- BUTTONS (kept) ---------------- */
+/* ---------------- BUTTONS ---------------- */
 .btn {
   --ring: #2fd1c2;
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: .6rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
   border-radius: 12px;
-  font-weight: 600; letter-spacing: .2px;
-  text-decoration: none; color: $text;
-  transition: box-shadow .15s ease, background .15s ease, color .15s ease;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  color: $text;
+  transition: box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 
-  &--outline { box-shadow: 0 0 0 1px var(--ring) inset; &:hover { box-shadow: 0 0 0 2px var(--ring) inset; } }
-  &--solid   { background: var(--ring); color: #041018; &:hover { box-shadow: 0 0 0 6px color-mix(in srgb, var(--ring), transparent 85%); } }
+  &--outline {
+    box-shadow: 0 0 0 1px var(--ring) inset;
+    &:hover {
+      box-shadow: 0 0 0 2px var(--ring) inset;
+    }
+  }
+  &--solid {
+    background: var(--ring);
+    color: #041018;
+    &:hover {
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--ring), transparent 85%);
+    }
+  }
 }
 
 /* ---------------- PREVIEW (cards + about) ---------------- */
 .homePreview {
   display: grid;
-  grid-template-columns: 1.35fr 0.9fr; /* give cards a bit more room */
+  grid-template-columns: 1.35fr 0.9fr; /* give cards more room */
   column-gap: 3rem;
-  row-gap: 1rem;
+  row-gap: 1.5rem;
   align-items: start;
   margin: 0 0 1rem 0;
 
@@ -78,89 +99,140 @@ $card-grad-bot: #0d1222;
     column-gap: 0;
   }
 
-  /* LEFT column — wider, nudged to the right a bit */
+  /* LEFT column */
   &__left {
-    max-width: calc(58rem + 2rem); /* two cards 28rem each + 2rem gap */
-    margin-left: 1rem;             /* ← nudge right */
-    @include maxw($tablet-portrait) { margin-left: 0; }
+    /* keep wide but centered constraints */
+    max-width: 70rem;
+    @include maxw($tablet-portrait) {
+      max-width: 100%;
+    }
   }
 
-  &__cards {
-    display: grid;
-    grid-auto-rows: 23rem; /* taller to support bigger image */
-    grid-template-columns: repeat(2, minmax(33rem, 34rem)); /* ← wider cards */
-    column-gap: 2rem;
-    justify-content: start;
+  .homeSectionTitle {
+    color: $cyan;
+    margin: 1rem 0;
+  }
 
-    @include maxw($cellphone-portrait) {
-      grid-template-columns: 1fr;
-      max-width: 28rem;
-      justify-content: center;
-    }
+  /* cards container — FLEX so rows center naturally */
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* horizontal space between cards */
+    justify-content: center; /* center incomplete rows */
   }
 
   /* RIGHT column (about snippet) */
   &__right {
-    max-width: 40rem;
+    max-width: 44rem;
     margin-left: auto;
     padding-left: 1rem;
     justify-self: end;
+
+    @include maxw($tablet-portrait) {
+      justify-self: center;
+      margin-left: 0;
+      padding-left: 0;
+      max-width: 36rem;
+      margin-top: 0;
+    }
   }
 }
 
 /* ---------------- CARD ---------------- */
 .homeCard {
+  /* two-up (or more) at desktop, centered rows; single on mobile */ /* width target; allows wrap */
+  max-width: 31rem;
   display: grid;
-  grid-template-rows: auto auto 1fr; /* head, tags, image grows */
-  height: 25rem !important;
-  gap: 8px;
+  grid-template-rows: auto auto 1fr; /* head, tags, image area */
+  height: 27rem; /* taller per your note */
+  gap: 10px;
+
   background: linear-gradient(180deg, $card-grad-top, $card-grad-bot);
   border: 1px solid $card-line;
   border-radius: 16px;
-  padding: .85rem;
+  padding: 1rem;
   color: $text;
   text-decoration: none;
-  text-align: center; /* center everything */
+  text-align: center;
   box-shadow: 0 0 0 1px $card-ring inset;
-  transition: transform .12s ease, box-shadow .12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow:
-      0 0 0 1px $card-ring inset,
+    box-shadow: 0 0 0 1px $card-ring inset,
       0 0 0 5px color-mix(in srgb, $cyan, transparent 86%);
   }
 
-  .homeCard__head { display: grid; gap: 2px; margin-bottom: 0; }
-  .homeCard__kicker { color: $kicker; font-weight: 700; font-size: .95rem; }
-  .homeCard__title  { margin: 0; font-size: clamp(1.2rem, 1rem + .4vw, 1.5rem); }
+  .homeCard__head {
+    display: grid;
+    gap: 2px;
+    margin-bottom: 0;
+  }
+  .homeCard__kicker {
+    color: $kicker;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .homeCard__title {
+    margin: 0;
+    font-size: clamp(1.2rem, 1rem + 0.4vw, 1.5rem);
+  }
 
-  /* chips immediately under title, tighter spacing */
+  /* chips under title */
   .homeCard__tags {
-    display: flex; gap: 6px; flex-wrap: wrap;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 4px;  /* tighter */
+    align-items: center;
+    margin-top: 6px;
   }
 
   .homeCard__image {
     width: 100%;
     aspect-ratio: 16 / 9;
-    height: 17rem;
+    height: 18rem; /* taller image */
     object-fit: cover;
     border-radius: 12px;
+  }
+
+  @include maxw($cellphone-portrait) {
+    max-width: 28rem;
+    height: 28.9rem; /* responsive shorter band on phones */
+    margin-inline: auto;
   }
 }
 
 .homeTag {
-  font-size: .85rem;
+  font-size: 0.85rem;
   padding: 4px 8px;
   border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: $text;
 }
 
-/* ---------------- MISC (unchanged) ---------------- */
-.about-snippet { opacity: .92; line-height: 1.6; margin: 0 0 .6rem; }
-.link-more { color: $cyan; text-decoration: none; }
-.link-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* ---------------- MISC ---------------- */
+.about-snippet {
+  opacity: 0.92;
+  line-height: 1.6;
+  margin: 0 0 0.6rem;
+
+  @include maxw($cellphone-portrait) {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+.link-more {
+  color: $cyan;
+  text-decoration: none;
+
+  @include maxw($cellphone-portrait) {
+    font-size: 1rem;
+    margin-left: 2rem;
+  }
+}
+.link-more:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
