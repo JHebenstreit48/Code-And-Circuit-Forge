@@ -1,23 +1,30 @@
 import { Images } from '@/assets/images/images';
 
+export type ProjectGroup = 'Current Projects' | 'Early Projects' | 'Planned Projects';
+
 export interface IPortfolioCard {
     image?: string;
     name: string;
     description: string;
     gitHubRepo?: string;
     deployment?: string;
-    tags: string[];                        // NEW
-    group?: 'Recent Projects' | 'Early Projects';  // NEW (for section titles)
+    tags: string[];
+    group?: ProjectGroup;
   }
 
+  // Optional central placeholder for “coming soon”
+// export const PLACEHOLDER_IMG = Images?.Placeholder ?? '/images/placeholder-project.png';
+
 const portfolioData: IPortfolioCard[] = [
+    // --------------------- Early Projects Start -------------------
     {
         image: Images.StarWars,
         name: 'Star Wars v1',
         description: 'Non-React version of Star Wars website',
         gitHubRepo: 'https://github.com/JHebenstreit48/star-wars',
         deployment: 'https://jhebenstreit48.github.io/star-wars/',
-        tags: []
+        tags: [],
+        group: 'Early Projects',
     },
     {
         image: Images.CodingNotesV1,
@@ -25,7 +32,8 @@ const portfolioData: IPortfolioCard[] = [
         description: 'Non-React version of my portfolio',
         gitHubRepo: 'https://github.com/JHebenstreit48/portfolio',
         deployment: 'https://jhebenstreit48.github.io/coding-study-guide/',
-        tags: []
+        tags: [],
+        group: 'Early Projects',
     },
     {
         image: Images.AsphaltLegendsv1,
@@ -33,15 +41,20 @@ const portfolioData: IPortfolioCard[] = [
         description: 'Non-React version of Asphalt Legends Unite video game site',
         gitHubRepo: 'https://github.com/JHebenstreit48/asphalt-legends-unite',
         deployment: 'https://jhebenstreit48.github.io/asphalt-legends-unite/',
-        tags: []
+        tags: [],
+        group: 'Early Projects',
     },
+    // --------------------- Early Projects End -------------------
+
+    // --------------------- Current Projects Start -------------------
     {
         image: Images.ALUTracker,
         name: 'ALU Tracker',
         description: 'React version of Asphalt Legends Unite video game site',
         gitHubRepo: 'https://github.com/JHebenstreit48/asphalt-legends-unite-react',
         deployment: 'https://asphaltlegendsunitetracker.netlify.app/',
-        tags: []
+        tags: [],
+        group: 'Current Projects',
     },
     {
         image: Images.DevScriptStax,
@@ -49,7 +62,8 @@ const portfolioData: IPortfolioCard[] = [
         description: 'React version of Coding Notes website',
         gitHubRepo: 'https://github.com/JHebenstreit48/DevScriptStax',
         deployment: 'https://devscriptstax.netlify.app/',
-        tags: []
+        tags: [],
+        group: 'Current Projects',
     },
     {
         image: Images.NetNotes,
@@ -57,7 +71,8 @@ const portfolioData: IPortfolioCard[] = [
         description: 'A web application for my notes on all things Cisco and IT networking related.',
         gitHubRepo: 'https://github.com/JHebenstreit48/NetNotes',
         deployment: 'https://netnotes.netlify.app/',
-        tags: []
+        tags: [],
+        group: 'Current Projects',
     },
     {
         image: Images.PixelProse,
@@ -65,7 +80,8 @@ const portfolioData: IPortfolioCard[] = [
         description: "A web application for my notes on all things console gaming related.",
         gitHubRepo: 'https://github.com/JHebenstreit48/PixelProse',
         deployment: 'https://pixelprose.netlify.app/',
-        tags: []
+        tags: [],
+        group: 'Current Projects',
     },
     {
         image: Images.AppFoundry,
@@ -73,16 +89,22 @@ const portfolioData: IPortfolioCard[] = [
         description: 'A web application for my notes on all things mobile app and game development.',
         gitHubRepo: 'https://github.com/JHebenstreit48/AppFoundry',
         deployment: 'https://appfoundry.netlify.app/',
-        tags: []
+        tags: [],
+        group: 'Current Projects',
     },
+    // --------------------- Current Projects End -------------------
+
+    // --------------------- Planned Projects Start -------------------
     {
         // image: Images.Film2Bytes,
         name: 'Film2Bytes',
         description: 'A web application for my film scanning and retouch services business.',
         gitHubRepo: '',
         deployment: '',
-        tags: []
-    }
+        tags: [],
+        group: 'Planned Projects',
+    },
+    // --------------------- Planned Projects End -------------------
 ];
 
 export default portfolioData
