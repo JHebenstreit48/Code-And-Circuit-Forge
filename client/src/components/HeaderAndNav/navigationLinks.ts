@@ -6,7 +6,7 @@ export type NavLinkItem = {
   const navigationLinks: NavLinkItem[] = [
     { title: 'About', path: '/about' },
     { title: 'Portfolio', path: '/portfolio' },
-    { title: 'Skills', path: '/resume' },
+    { title: 'Skills', path: '/skills' },
   ];
   
   export default navigationLinks;  
