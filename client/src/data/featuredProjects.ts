@@ -27,4 +27,12 @@ export const featuredProjects: Featured[] = [
     to: '/portfolio#proj-devscriptstax',
     tags: ['React', 'Node', 'TypeScript', 'MongoDB', 'Express', 'JSON',],
   },
+  {
+    id: 'planned',
+    title: 'Film2Bytes',
+    subtitle: 'Planned Projects',
+    // image: Images.Film2Bytes,        // adjust to your actual key
+    to: '/portfolio#proj-film2bytes',
+    tags: ['React', 'TypeScript', 'GraphQL', 'Apollo', 'PostgreSQL'],
+  }
 ];
