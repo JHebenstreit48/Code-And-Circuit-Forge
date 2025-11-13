@@ -3,7 +3,7 @@ import {
   FaNodeJs,
   FaGitAlt,
   FaGithub,
-  FaLess,
+  // FaLess,
   FaNetworkWired,
   FaSass,
   FaWifi,
@@ -13,7 +13,7 @@ import {
   SiApollographql,
   SiCisco,
   SiCss3,
-  SiDrupal,
+  // SiDrupal,
   SiGraphql,
   SiHtml5,
   SiInsomnia,
@@ -23,7 +23,7 @@ import {
   SiPostman,
   SiPython,
   SiTypescript,
-  SiVuedotjs,
+  // SiVuedotjs,
   SiFlutter,
   SiDart,
   SiKotlin,
@@ -31,6 +31,7 @@ import {
   SiExpo,
   SiAndroidstudio,
   SiWireshark,
+  SiFirebase,
 } from "react-icons/si";
 import { DiVisualstudio } from "react-icons/di";
 import { BiLogoVisualStudio, BiNetworkChart } from "react-icons/bi";
@@ -55,6 +56,7 @@ export const SkillsList: { title: string; subcategories: Subcategory[] }[] = [
           { name: "React", icon: FaReact, color: "#61DAFB" },
           { name: "Node.js", icon: FaNodeJs, color: "#339933" },
           { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+          { name: "Sass", icon: FaSass, color: "#CC6699" },
         ],
       },
       {
@@ -63,12 +65,12 @@ export const SkillsList: { title: string; subcategories: Subcategory[] }[] = [
         skills: [
           { name: "Angular", icon: SiAngular, color: "#DD0031" },
           { name: "Apollo", icon: SiApollographql, color: "#311C87" },
-          { name: "Drupal", icon: SiDrupal, color: "#0678BE" },
+          // { name: "Drupal", icon: SiDrupal, color: "#0678BE" },
           { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
           { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
-          { name: "Vue.js", icon: SiVuedotjs, color: "#42B883" },
-          { name: "Sass", icon: FaSass, color: "#CC6699" },
-          { name: "Less", icon: FaLess, color: "#1D365D" },
+          // { name: "Vue.js", icon: SiVuedotjs, color: "#42B883" },
+          // { name: "Less", icon: FaLess, color: "#1D365D" },
+          { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
         ],
       },
       {
