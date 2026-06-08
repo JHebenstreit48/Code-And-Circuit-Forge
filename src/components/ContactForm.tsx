@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "@/SCSS/ContactForm.scss";
 
-export default function ContactForm() {
-  interface Inputs {
-    name: string;
-    email: string;
-    textarea: string;
-  }
+interface Inputs {
+  name: string;
+  email: string;
+  textarea: string;
+}
 
+export default function ContactForm() {
   const [inputs, setInputs] = useState<Inputs>({ name: "", email: "", textarea: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const name = event.target.name;
@@ -18,40 +19,33 @@ export default function ContactForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const query = `
-      mutation SendMessage($name: String!, $email: String!, $message: String!) {
-        sendContactMessage(name: $name, email: $email, message: $message)
-      }
-    `;
-
-    const variables = {
-      name: inputs.name,
-      email: inputs.email,
-      message: inputs.textarea,
-    };
+    setStatus("sending");
 
     try {
-      const response = await fetch("http://localhost:3001/graphql", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ query, variables }),
+        body: JSON.stringify({
+          name: inputs.name,
+          email: inputs.email,
+          message: inputs.textarea,
+        }),
       });
 
       const result = await response.json();
-      console.log("✅ Submitted:", result);
 
-      if (result.data?.sendContactMessage) {
-        alert("Message sent successfully!");
+      if (result.ok) {
+        setStatus("success");
         setInputs({ name: "", email: "", textarea: "" });
       } else {
-        alert("Something went wrong.");
+        setStatus("error");
       }
     } catch (error) {
       console.error("❌ Submission error:", error);
-      alert("Failed to send message.");
+      setStatus("error");
     }
   };
 
@@ -86,7 +80,15 @@ export default function ContactForm() {
         required
       />
 
-      <input type="submit" value="Submit" className="submitButton" />
+      <input
+        type="submit"
+        value={status === "sending" ? "Sending..." : "Submit"}
+        className="submitButton"
+        disabled={status === "sending"}
+      />
+
+      {status === "success" && <p className="successMessage">Message sent successfully!</p>}
+      {status === "error" && <p className="errorMessage">Failed to send message. Please try again.</p>}
     </form>
   );
 }

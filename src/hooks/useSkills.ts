@@ -4,7 +4,7 @@ import { db } from "@/Firebase/client";
 import { skillIcons } from "@/data/skillsIcons";
 import type { SkillSection } from "@/components/ResumeSkills/Skills";
 
-const SKILLS_DOCS = ["webDev", "mobileDev", "networking", "sharedTools"];
+const SKILLS_DOCS = ["webDev", "mobileDev", "gameDev", "networking", "sharedTools"];
 
 export function useSkills() {
   const [sections, setSections] = useState<SkillSection[]>([]);
@@ -29,6 +29,10 @@ export function useSkills() {
                 skills: sub.skills.map((skill) => ({
                   ...skill,
                   icon: skillIcons[skill.name] ?? null,
+                  children: skill.children?.map((child) => ({
+                    ...child,
+                    icon: skillIcons[child.name] ?? null,
+                  })),
                 })),
               };
             }
