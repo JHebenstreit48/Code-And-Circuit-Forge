@@ -4,7 +4,7 @@ import { db } from "@/Firebase/client";
 
 type ResourceMap = Record<string, { label: string; url: string }[]>;
 
-const RESOURCES_DOCS = ["webDev", "mobileDev", "networking", "sharedTools"];
+const RESOURCES_DOCS = ["webDev", "mobileDev", "gameDev", "networking", "sharedTools"];
 
 export function useSkillsResources() {
   const [resources, setResources] = useState<ResourceMap>({});
