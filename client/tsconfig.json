@@ -3,22 +3,22 @@
     "jsx": "react-jsx",
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
+    "ignoreDeprecations": "6.0",          // ✅ exact version the error told you
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "src/types"],
-
-    // 🔒 Prevent TS from generating JS files
     "noEmit": true
   },
-  "include": ["src", "tailwind.config.js"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

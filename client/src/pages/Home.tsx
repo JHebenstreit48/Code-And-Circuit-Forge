@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Portrait from '@/assets/images/ProfilePicture.jpg';
-import myResume from '@/assets/Justin-Hebenstreit-Programming-Resume.pdf';
+import myResume from '@/assets/2026-Resume.pdf';
 import { featuredProjects } from '@/data/featuredProjects';
 import '@/SCSS/Home.scss';
 
