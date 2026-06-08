@@ -1,0 +1,77 @@
+import {
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaGithub,
+  FaNetworkWired,
+  FaSass,
+  FaWifi,
+} from "react-icons/fa";
+import {
+  SiAngular,
+  SiApollographql,
+  SiCisco,
+  SiCss, // ← renamed from SiCss3
+  SiGraphql,
+  SiHtml5,
+  SiInsomnia,
+  SiJavascript,
+  SiMongodb,
+  SiPostgresql,
+  SiPostman,
+  SiPython,
+  SiTypescript,
+  SiFlutter,
+  SiDart,
+  SiKotlin,
+  SiSwift,
+  SiExpo,
+  SiAndroidstudio,
+  SiWireshark,
+  SiFirebase,
+} from "react-icons/si";
+import { DiVisualstudio } from "react-icons/di";
+import { BiLogoVisualStudio, BiNetworkChart } from "react-icons/bi";
+import { BsCalculator, BsWrench } from "react-icons/bs";
+import { TbBrandReactNative } from "react-icons/tb";
+import { MdLayers, MdVpnLock } from "react-icons/md";
+import type { IconType } from "react-icons";
+
+export const skillIcons: Record<string, IconType> = {
+  HTML: SiHtml5,
+  CSS: SiCss,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  React: FaReact,
+  "Node.js": FaNodeJs,
+  MongoDB: SiMongodb,
+  Sass: FaSass,
+  Angular: SiAngular,
+  Apollo: SiApollographql,
+  GraphQL: SiGraphql,
+  PostgreSQL: SiPostgresql,
+  Firebase: SiFirebase,
+  "React Native": TbBrandReactNative,
+  Flutter: SiFlutter,
+  Dart: SiDart,
+  Kotlin: SiKotlin,
+  Swift: SiSwift,
+  Expo: SiExpo,
+  "Android Studio": SiAndroidstudio,
+  Cisco: SiCisco,
+  "Security Protocols": MdVpnLock,
+  Networking: FaNetworkWired,
+  Wireless: FaWifi,
+  Subnetting: BsCalculator,
+  "OSI Model": MdLayers,
+  "Packet Tracer": BiNetworkChart,
+  GNS3: BsWrench,
+  Wireshark: SiWireshark,
+  "VS Code": BiLogoVisualStudio,
+  Git: FaGitAlt,
+  GitHub: FaGithub,
+  "Visual Studio": DiVisualstudio,
+  Python: SiPython,
+  Insomnia: SiInsomnia,
+  Postman: SiPostman,
+};
