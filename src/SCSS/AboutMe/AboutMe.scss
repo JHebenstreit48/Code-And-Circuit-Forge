@@ -1,61 +1,236 @@
+@use "sass:color";
 @use "@scss/Globals" as *;
 
-/* page gutter tokens (edit to taste) */
-$gutter-desktop: 24px;
-$gutter-tablet: 20px;
-$gutter-phone: 16px;
+/* ─────────────────────────────────────────
+   BIO COMPONENT VARIABLES
+───────────────────────────────────────── */
+$border-highlight: rgb(169, 30, 255);
+$box-glow: rgb(0, 219, 248);
+$teal-shadow: rgb(2, 40, 51);
+$text-shadow: 5px 3px 11px $teal-shadow;
 
-.aboutHero {
-  padding-top: 24px;
-  padding-bottom: 48px;
-  /* if you're linking to #about, this avoids header overlap */
-  scroll-margin-top: 80px;
+/* ─────────────────────────────────────────
+   BIO COMPONENT
+   (.about and .bio used by Bio.tsx)
+───────────────────────────────────────── */
+.about {
+  display: block;
 
-  /* ===== container ===== */
-  .aboutHero__inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 $gutter-desktop;
-    display: block;
-
-    @include maxw($tablet-portrait) { padding: 0 $gutter-tablet; }
-    @include maxw($cellphone-portrait) { padding: 0 $gutter-phone; }
-  }
-
-  /* ===== title =====
-     Option A (default): aligns with card edge.
-     If you want it a bit further left, uncomment margin-left line. */
-  .aboutHero__title {
-    margin: 0 0 0 7rem;
-
-    /* Uncomment to “hang” the title left past the inner gutter:
-    margin-left: -$gutter-desktop;
-    @include maxw($tablet-portrait) { margin-left: 0; }
-    */
-
-    @include maxw($tablet-portrait) {
-      text-align: center;
-      margin-bottom: 14px;
-    }
-  }
-
-  /* ===== text/card wrapper ===== */
-  .aboutHero__text {
+  .bio {
+    color: rgba($text, 0.85);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1rem);
     width: 100%;
 
-    /* The Bio card element (from Bio.scss) */
-    > * {
-      width: 100%;
-      max-width: 1100px;     /* bump to 1200px if you want more width */
-      margin: 0 auto;        /* center the card */
-      line-height: 1.7;
-
-      @include maxw($tablet-portrait) { max-width: 760px; }
-      @include maxw($cellphone-portrait) { max-width: 100%; }
+    li {
+      margin: 0.4rem 0;
     }
 
-    /* comfy list spacing inside the card */
-    ul { padding-left: 20px; margin-top: 12px; }
-    li { margin: 6px 0; }
+    @include maxw($cellphone-portrait) {
+      font-size: 1rem;
+    }
+  }
+
+  ul.bio {
+    padding-left: 1.35rem;
+    margin: 0.75rem 0 1.5rem;
+
+    li {
+      color: rgba($text, 0.85);
+      line-height: 1.7;
+    }
+  }
+}
+
+/* ─────────────────────────────────────────
+   PAGE SHELL
+───────────────────────────────────────── */
+.about-page {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  position: relative;
+
+  &__photo {
+    position: absolute;
+    top: 5rem;
+    left: 2rem;
+    display: block;
+    width: 220px;
+    height: 260px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 12px;
+    border: 2px solid $border-highlight;
+    box-shadow:
+      0 0 0 1px rgba(169, 30, 255, 0.28),
+      0 10px 28px rgba(0, 0, 0, 0.35),
+      0 0 18px rgba(0, 219, 248, 0.22);
+
+    @include maxw($tablet-portrait) {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 180px;
+      height: 220px;
+      margin-bottom: 2rem;
+    }
+
+    @include maxw($cellphone-portrait) {
+      margin: 0 auto 2rem;
+      width: 160px;
+      height: 190px;
+    }
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include maxw($tablet-portrait) {
+      padding-left: 0;
+    }
+  }
+
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__eyebrow {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: $cyan;
+    margin-bottom: 0;
+  }
+
+  /* ─── Two-column: text left, sidebar right ─── */
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 4rem;
+    align-items: start;
+
+    @include maxw($tablet-portrait) {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  &__text {
+    min-width: 0;
+  }
+
+  &__lead {
+    font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.35rem);
+    color: $text;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    font-weight: 400;
+  }
+
+  &__divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, $cyan, $accent);
+    margin: 2rem 0;
+  }
+
+  &__portfolio-link {
+    display: inline-block;
+    color: $cyan;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba($cyan, 0.3);
+    padding-bottom: 2px;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      color: $text;
+      border-bottom-color: $text;
+      text-decoration: none;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    @include maxw($cellphone-portrait) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* ─── Sidebar ─── */
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 0.9rem;
+
+    @include maxw($tablet-portrait) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-top: 0;
+
+      .about-page__card {
+        flex: 1 1 200px;
+      }
+    }
+
+    @include maxw($cellphone-portrait) {
+      flex-direction: column;
+    }
+  }
+
+  &__card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  &__card-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $cyan;
+    margin: 0 0 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    li {
+      color: rgba($text, 0.75);
+      font-size: 0.9rem;
+      padding-left: 1rem;
+      position: relative;
+      margin: 0;
+
+      &::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: $cyan;
+        font-size: 0.7rem;
+        top: 3px;
+      }
+    }
   }
 }

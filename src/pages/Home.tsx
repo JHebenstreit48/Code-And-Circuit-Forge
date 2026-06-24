@@ -6,20 +6,15 @@ import '@/SCSS/Home.scss';
 
 export default function Home() {
   const { projects, loading, error } = useFeaturedProjects();
-  const { url: portraitUrl } = useStorageUrl('images/home-page-images/ProfilePicture.jpg');
 
   return (
     <main className="home" aria-labelledby="home-title">
-      <section className="hero">
-        <div className="hero__media" aria-hidden="true">
-          <img
-            className="hero__portrait"
-            src={portraitUrl ?? ''}
-            alt="Portrait"
-          />
-        </div>
 
+      {/* ── HERO ── */}
+      <section className="hero">
+        <div className="hero__overlay" aria-hidden="true" />
         <div className="hero__content">
+          <p className="hero__eyebrow">IT Development Portfolio</p>
           <h1 id="home-title" className="hero__title">
             Full-Stack Developer
           </h1>
@@ -27,46 +22,43 @@ export default function Home() {
             React/TypeScript, clean architecture, data-driven UX.
           </p>
           <div className="hero__ctas">
-            <Link to="/portfolio" className="btn btn--outline">
+            <Link to="/portfolio" className="btn btn--solid">
               View Projects
             </Link>
-            <a href={myResume} className="btn btn--solid" target="_blank" rel="noreferrer">
+            <a href={myResume} className="btn btn--outline" target="_blank" rel="noreferrer">
               Download Résumé
             </a>
           </div>
         </div>
 
-        <aside className="hero__about">
-          <h2 className="homeSectionTitle homeSectionTitle--about">About</h2>
-          <p className="about-snippet">
-            I ship React/TypeScript apps with clear architecture and data-driven UX,
-            from calculators to content systems. Recently: navigation architecture,
-            performance tuning, and modeling tricky data.
-          </p>
-          <p className="about-snippet">
-            Next: a role owning front-end architecture and delivering measurable UX wins.
-          </p>
-          <Link to="/about" className="link-more">More about me →</Link>
-        </aside>
+        {/* Scroll indicator — mirrors Steel & Shutter's gold line, but in cyan */}
+        <div className="hero__scroll-indicator" aria-hidden="true">
+          <span />
+        </div>
+      </section>
 
-        <div className="hero__divider">
+      {/* ── PORTFOLIO ── */}
+      <section className="portfolio" aria-labelledby="portfolio-title">
+        <div className="portfolio__divider">
           <hr />
-          <h2 className="homeSectionTitle">Portfolio</h2>
+          <h2 id="portfolio-title" className="portfolio__heading">
+            Portfolio
+          </h2>
           <hr />
         </div>
 
-        <div className="hero__cards">
-          {loading && <p>Loading projects...</p>}
-          {error && <p>{error}</p>}
+        <div className="portfolio__cards">
+          {loading && <p className="portfolio__status">Loading projects…</p>}
+          {error   && <p className="portfolio__status">{error}</p>}
           {!loading && projects.map((p) => (
             <Link key={p.id} to={p.to} className="homeCard">
               <div className="homeCard__head">
-                {p.subtitle && <span className="homeCard__kicker">{p.subtitle}</span>}
+                {p.subtitle && (
+                  <span className="homeCard__kicker">{p.subtitle}</span>
+                )}
                 <h3 className="homeCard__title">{p.title}</h3>
               </div>
-              {p.image && (
-                <ProjectImage path={p.image} />
-              )}
+              {p.image && <ProjectImage path={p.image} />}
               {p.tags?.length ? (
                 <div className="homeCard__tags">
                   {p.tags.map((t) => (
@@ -78,12 +70,15 @@ export default function Home() {
           ))}
         </div>
       </section>
+
     </main>
   );
 }
 
 function ProjectImage({ path }: { path: string }) {
-  const { url } = useStorageUrl(`images/home-page-images/${path.split('/').pop()}`);
+  const { url } = useStorageUrl(
+    `images/home-page-images/${path.split('/').pop()}`
+  );
   return url ? (
     <img className="homeCard__image" src={url} alt="" loading="lazy" />
   ) : null;

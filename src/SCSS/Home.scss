@@ -1,245 +1,194 @@
 @use "sass:color";
 @use "@scss/Globals" as *;
 
-/* ---------------- Page container ---------------- */
-.home {
-  width: 95%;
-  margin-inline: auto;
-  padding: clamp(14px, 2vw, 24px) 0;
-  color: $text;
-}
-
-/* ---------------- HERO GRID ---------------- */
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
 .hero {
-  display: grid;
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 
-  /* 3 columns:
-     1 = portrait column,
-     2 = intro (title/buttons),
-     3 = about block */
-  grid-template-columns:
-    20rem                      // fixed to match portrait width
-    minmax(0, 1.7fr)
-    minmax(0, 1.1fr);
-
-  /* 3 rows:
-     row 1 = portrait + title/buttons + about
-     row 2 = "Portfolio" divider (cols 2–3)
-     row 3 = cards (span full width cols 1–3) */
-  grid-template-rows: auto auto auto;
-
-  column-gap: 3rem;
-  row-gap: 0.75rem;            // tighter: less gap between title/Portfolio/cards
-  align-items: center;         // centers title/buttons vertically vs portrait
-  margin-bottom: 1.5rem;
-
-  /* PORTRAIT */
-  .hero__media {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;           // only row 1 now; row 3 free for cards under it
-    width: 20rem;
-    height: 24rem;
-    background: #000;
-    border-radius: 16px;
-    border: 2px solid rgb(169, 30, 255);
-    box-shadow: 0 0 0 1px rgba(169, 30, 255, 0.28),
-      0 10px 28px rgba(0, 0, 0, 0.35),
-      0 0 18px rgba(0, 219, 248, 0.22);
-    overflow: hidden;
-    flex-shrink: 0;
-
-    @include maxw($cellphone-portrait) {
-      margin: 0 auto;
-      grid-row: 1 / 2;
-      width: 16rem;
-      height: 19rem;
-    }
+  &__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 780px;
+    padding: 2rem clamp(1.25rem, 5vw, 3rem);
   }
 
-  /* keep your tuned crop, nudged slightly */
-  .hero__portrait {
-    width: 130%;
-    height: 120%;
-    margin-top: 1.75rem;
-    object-fit: cover;
-    transform: translate(-10%, -5%);
-  }
-
-  /* INTRO (title/tagline/buttons) */
-  .hero__content {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-
-    display: flex;
-    flex-direction: column;
-    margin-left: 3rem;
-
-    @include maxw($cellphone-portrait) {
-      grid-column: 1 / -1;
-      grid-row: 2 / 3;
-      margin-left: 0;
-      text-align: center;
-    }
-  }
-
-  .hero__title {
-    margin: 0 0 0.5rem;
-    font-size: clamp(2.25rem, 1.6rem + 2.2vw, 3.4rem);
-    line-height: 1.05;
-  }
-
-  .hero__tagline {
-    margin: 0 0 clamp(12px, 2vw, 18px);
+  &__eyebrow {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: $cyan;
+    margin-bottom: 1.25rem;
     opacity: 0.9;
-    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
+
+    @include maxw($cellphone-portrait) {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+    }
   }
 
-  .hero__ctas {
+  &__title {
+    margin: 0 0 1.25rem;
+    font-size: clamp(2.8rem, 2rem + 4vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: $text;
+
+    @include maxw($tablet-portrait) {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+    }
+  }
+
+  &__tagline {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    line-height: 1.7;
+    color: rgba($text, 0.75);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  &__ctas {
     display: flex;
     gap: clamp(10px, 1.4vw, 16px);
-    flex-wrap: wrap;
-
-    @include maxw($cellphone-portrait) {
-      justify-content: center;
-    }
-  }
-
-  /* ABOUT column aligned with title */
-  .hero__about {
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
-    max-width: 44rem;
-    margin-left: auto;
-    padding-left: 1rem;
-    align-self: center;
-
-    @include maxw($tablet-portrait) {
-      grid-column: 1 / -1;
-      grid-row: 3 / 4;
-      max-width: 36rem;
-      margin: 1.5rem auto 0;
-      padding-left: 0;
-      text-align: left;
-    }
-
-    @include maxw($cellphone-portrait) {
-      text-align: center;
-    }
-  }
-
-  .homeSectionTitle {
-    color: $cyan;
-    margin: 0;
-    white-space: nowrap;
-    font-size: 1.4rem;
-  }
-
-  .homeSectionTitle--about {
-    margin-bottom: 0.6rem;
-  }
-
-  /* ROW 2: Portfolio divider spanning the middle + right columns */
-  .hero__divider {
-    grid-column: 2 / 4;
-    grid-row: 2 / 3;
-
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 0.2rem;
-    margin-bottom: 0.1rem;  // much smaller; main spacing now controlled by row-gap
-  }
-
-  .hero__divider hr {
-    flex: 1;
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  /* ROW 3: cards now span the FULL width under the portrait */
-  .hero__cards {
-    grid-column: 1 / 4;        //  <--- this is what lets cards fill under your photo
-    grid-row: 3 / 4;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
     justify-content: center;
+    flex-wrap: wrap;
 
-    @include maxw($tablet-portrait) {
-      grid-column: 1 / -1;
-      justify-content: center;
+    @include maxw($cellphone-portrait) {
+      flex-direction: column;
+      align-items: center;
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
     }
   }
 
-  @include maxw($tablet-portrait) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
-    column-gap: 0;
-    row-gap: 1.25rem;
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
 
-    .hero__media {
-      grid-column: 1 / -1;
-      grid-row: 1 / 2;
-    }
-
-    .hero__content {
-      grid-column: 1 / -1;
-      grid-row: 2 / 3;
-    }
-
-    .hero__about {
-      grid-column: 1 / -1;
-      grid-row: 3 / 4;
-    }
-
-    .hero__divider {
-      grid-column: 1 / -1;
-      grid-row: 4 / 5;
-    }
-
-    .hero__cards {
-      grid-column: 1 / -1;
-      grid-row: 5 / 6;
+    span {
+      display: block;
+      width: 1px;
+      height: 56px;
+      background: linear-gradient(180deg, $cyan, transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
     }
   }
 }
 
-/* ---------------- BUTTONS ---------------- */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1;   transform: scaleY(1);   }
+  50%       { opacity: 0.3; transform: scaleY(0.8); }
+}
+
+/* ─────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────── */
 .btn {
-  --ring: #2fd1c2;
+  --ring: #{$cyan};
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 1rem;
-  border-radius: 12px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   text-decoration: none;
   color: $text;
-  transition: box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  transition: box-shadow 0.15s ease, background 0.15s ease,
+              color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
 
   &--outline {
+    background: transparent;
     box-shadow: 0 0 0 1px var(--ring) inset;
+
     &:hover {
       box-shadow: 0 0 0 2px var(--ring) inset;
+      transform: translateY(-2px);
     }
   }
 
   &--solid {
     background: var(--ring);
     color: #041018;
+
     &:hover {
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--ring), transparent 85%);
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(47, 209, 194, 0.28);
     }
   }
 }
 
-/* ---------------- CARD ---------------- */
+/* ─────────────────────────────────────────
+   PORTFOLIO SECTION
+───────────────────────────────────────── */
+.portfolio {
+  width: 95%;
+  margin-inline: auto;
+  padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(2rem, 4vw, 4rem);
+
+  @include maxw($cellphone-portrait) {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+
+    hr {
+      flex: 1;
+      border: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  &__heading {
+    color: $cyan;
+    margin: 0;
+    white-space: nowrap;
+    font-size: 1.4rem;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  &__status {
+    color: rgba($text, 0.6);
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* ─────────────────────────────────────────
+   CARD
+───────────────────────────────────────── */
 .homeCard {
-  /* Let cards grow wider and use the full row */
-  flex: 1 1 26rem;            // base width
-  max-width: 28rem;           // can get nicely wide
+  flex: 1 1 26rem;
+  max-width: 28rem;
   display: grid;
   height: 22rem;
   gap: 10px;
@@ -308,31 +257,4 @@
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: $text;
-}
-
-/* ---------------- MISC ---------------- */
-.about-snippet {
-  opacity: 0.92;
-  line-height: 1.6;
-  margin: 0 0 0.6rem;
-
-  @include maxw($cellphone-portrait) {
-    font-size: 1rem;
-    text-align: center;
-  }
-}
-
-.link-more {
-  color: $cyan;
-  text-decoration: none;
-
-  @include maxw($cellphone-portrait) {
-    font-size: 1rem;
-    margin-left: 2rem;
-  }
-}
-
-.link-more:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
