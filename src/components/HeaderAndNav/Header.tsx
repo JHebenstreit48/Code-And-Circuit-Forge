@@ -19,7 +19,7 @@ export default function Header() {
     <header className="GlassWrapper">
       <div className="GlassWrapper__inner">
         <Link to="/" className="brand" aria-label="Home">
-          <span className="brand__text">Justin Hebenstreit</span>
+          <span className="brand__text">Code & Circuit Forge</span>
         </Link>
 
         {/* Desktop nav */}
