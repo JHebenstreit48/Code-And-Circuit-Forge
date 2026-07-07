@@ -77,7 +77,7 @@ export default function Home() {
 
 function ProjectImage({ path }: { path: string }) {
   const { url } = useStorageUrl(
-    `images/home-page-images/${path.split('/').pop()}`
+    `images/portfolio-images/${path.split('/').pop()}`
   );
   return url ? (
     <img className="homeCard__image" src={url} alt="" loading="lazy" />

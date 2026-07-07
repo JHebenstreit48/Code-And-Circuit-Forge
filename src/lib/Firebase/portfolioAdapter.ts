@@ -1,15 +1,8 @@
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/Firebase/client";
-
-export type Featured = {
-  id: string;
-  title: string;
-  subtitle?: string;
-  image?: string;
-  to: string;
-  tags?: string[];
-};
+import { Featured } from "@/types/featuredProjects";
+import { IPortfolioCard } from "@/types/portfolio";
 
 export type ResourceMap = Record<string, { label: string; url: string }[]>;
 
@@ -17,6 +10,13 @@ export class PortfolioAdapter {
   async getFeaturedProjects(): Promise<Featured[]> {
     const snap = await getDocs(collection(db, "projects"));
     return snap.docs.map((d) => ({ id: d.id, ...d.data() })) as Featured[];
+  }
+
+  async getPortfolioCards(): Promise<IPortfolioCard[]> {
+    const snap = await getDocs(collection(db, "portfolio"));
+    return snap.docs.flatMap(
+      (d) => (d.data().projects ?? []) as IPortfolioCard[]
+    );
   }
 
   async getSkills(id: string) {
