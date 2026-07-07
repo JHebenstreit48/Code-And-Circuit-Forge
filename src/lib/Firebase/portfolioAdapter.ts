@@ -1,7 +1,7 @@
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/Firebase/client";
-import { Featured } from "@/types/featuredProjects";
+import { Featured } from "@/types/featuredProjects/featuredProjects";
 import { IPortfolioCard } from "@/types/portfolio";
 
 export type ResourceMap = Record<string, { label: string; url: string }[]>;
