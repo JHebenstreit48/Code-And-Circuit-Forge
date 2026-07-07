@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/Firebase/client";
-import { Featured } from "@/types/featuredProjects";
+import { Featured } from "@/types/featuredProjects/featuredProjects";
 
 export function useFeaturedProjects() {
   const [projects, setProjects] = useState<Featured[]>([]);
