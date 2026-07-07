@@ -54,8 +54,8 @@ export default function About() {
                 <li>TypeScript / JavaScript</li>
                 <li>Node.js / Express</li>
                 <li>PostgreSQL / MongoDB</li>
-                <li>Firebase / Docker</li>
-                <li>SCSS / Tailwind CSS</li>
+                <li>Firebase</li>
+                <li>SCSS</li>
               </ul>
             </div>
 
@@ -75,7 +75,7 @@ export default function About() {
                 <li>React Native</li>
                 <li>GraphQL / Apollo</li>
                 <li>CCNA Recertification</li>
-                <li>Python / Django</li>
+                <li>Python</li>
               </ul>
             </div>
           </aside>

@@ -1,10 +1,10 @@
-import { IPortfolioCard } from "@/components/Portfolio/PortfolioData";
+import { IPortfolioCard } from "@/types/portfolio";
 import { useStorageUrl } from "@/hooks/useStorageUrl";
 import "@/SCSS/Portfolio/PortfolioCards.scss";
 
-function ProjectImage({ filename, alt }: { filename?: string; alt: string }) {
+function ProjectImage({ filename }: { filename?: string }) {
   const { url, loading } = useStorageUrl(
-    filename ? `images/home-page-images/${filename}` : undefined
+    filename ? `images/portfolio-images/${filename}` : undefined
   );
 
   if (loading) return <div className="cardImg" />;
@@ -12,7 +12,7 @@ function ProjectImage({ filename, alt }: { filename?: string; alt: string }) {
     <img
       className="cardImg"
       src={url ?? "/images/placeholder-project.png"}
-      alt={alt}
+      alt=""
       loading="lazy"
     />
   );
@@ -22,6 +22,8 @@ export default function Cards(project: IPortfolioCard) {
   const hasRepo = Boolean(project.gitHubRepo);
   const hasDeploy = Boolean(project.deployment);
   const comingSoon = !hasRepo || !hasDeploy;
+  const tagCount = project.tags?.length ?? 0;
+  const isSingleRow = tagCount <= 4;
 
   return (
     <article className="card text-bg-dark" aria-labelledby={`${project.name}-title`}>
@@ -30,7 +32,7 @@ export default function Cards(project: IPortfolioCard) {
       </h5>
 
       <div className={`imageWrapper ${project.image ? "" : "isPlaceholder"}`}>
-        <ProjectImage filename={project.image} alt={project.description} />
+        <ProjectImage filename={project.image} />
         {comingSoon && (
           <div className="comingSoonOverlay" aria-hidden="true">
             Coming&nbsp;Soon
@@ -38,7 +40,9 @@ export default function Cards(project: IPortfolioCard) {
         )}
       </div>
 
-      <ul className="techList" aria-label="Technologies used">
+      <p className="cardDescription">{project.description}</p>
+
+      <ul className={`techList ${isSingleRow ? "techList--singleRow" : ""}`} aria-label="Technologies used">
         {project.tags?.map((t) => (
           <li key={t} className="pill">{t}</li>
         ))}
