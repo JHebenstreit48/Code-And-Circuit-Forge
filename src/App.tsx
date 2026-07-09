@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/components/HeaderAndNav/Header';
 import Footer from '@/components/Footer';
 
-// Global/layout styles (background + layout grid + any base tokens)
 import '@/SCSS/Page.scss';
 
 export default function App() {
@@ -13,7 +12,6 @@ export default function App() {
 
       <div className="contentWrapper">
         <Suspense fallback={null}>
-          {/* Main routed content */}
           <Outlet />
         </Suspense>
       </div>

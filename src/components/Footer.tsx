@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import '@/SCSS/HeaderNavAndFooter/Footer.scss';
+import { Link } from "react-router-dom";
+import "@/SCSS/HeaderNavAndFooter/Footer.scss";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -7,21 +7,23 @@ export default function Footer() {
   return (
     <footer className="footer" role="contentinfo">
       <div className="footer__inner">
-        {/* Brand / Tagline */}
         <div className="footer__brand">
-          <p className="footer__copy">© {year} <span className="footer__name">Justin Hebenstreit</span></p>
-          <p className="footer__tag">React · TypeScript · Clean architecture · Data-driven UX</p>
+          <p className="footer__copy">
+            © {year} <span className="footer__name">Justin Hebenstreit</span>
+          </p>
+          <p className="footer__tag">
+            React · TypeScript · Clean architecture · Data-driven UX
+          </p>
         </div>
 
-        {/* Quick Nav — match your page anchors/routes */}
         <nav className="footer__nav" aria-label="Footer">
           <Link to="/about">About</Link>
           <Link to="/portfolio">Portfolio</Link>
           <Link to="/skills">Skills</Link>
           <Link to="/contact">Contact</Link>
+          <Link to="/qrcode">Digital Card</Link>
         </nav>
-
-        {/* Social */}
+        
         <div className="footer__social">
           <a
             className="icon-btn"
@@ -45,7 +47,12 @@ export default function Footer() {
             <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
           </a>
 
-          <a className="icon-btn icon-btn--text" href="#top" aria-label="Back to top" title="Back to top">
+          <a
+            className="icon-btn icon-btn--text"
+            href="#top"
+            aria-label="Back to top"
+            title="Back to top"
+          >
             ↑
           </a>
         </div>
